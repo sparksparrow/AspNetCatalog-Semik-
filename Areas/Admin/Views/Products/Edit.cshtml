@@ -1,0 +1,99 @@
+﻿@model ProductItem
+@{
+    string pageTitle = "Редактировать запись";
+    ViewBag.Title = pageTitle;
+}
+
+<div class="form">
+    <h1>@pageTitle</h1>
+    <div>
+        <form asp-area="Admin" asp-controller="Products" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Images" />
+
+            <div asp-validation-summary="All"></div>
+            <div>
+                <label asp-for="Title"></label>
+                <input asp-for="Title" />
+                <span asp-validation-for="Title"></span>
+            </div>
+            <div>
+                <label asp-for="Name"></label>
+                <input id="nameItem" asp-for="Name" />
+                <span asp-validation-for="Name"></span>
+            </div>
+            <div>
+                <label asp-for="Description"></label>
+                <input id="description" asp-for="Description" />
+                <span asp-validation-for="Description"></span>
+            </div>
+            <div>
+                <label asp-for="Images"></label>
+                <input type="file" name="titleImageFiles" id="titleImageFiles" onchange="handleFiles(this.files)" multiple="multiple" accept="image/*" />
+                <div id="preview">
+                    @if (Model.Images != null && Model.Images.Any())
+                    {
+                        @foreach (Image img in Model.Images)
+                        {
+                            <img class="image" src="~/images/ProductItems/@img.ProductItemId/@img.Name" />
+                        }
+                    }
+                </div>
+            </div>
+            <div>
+                <label asp-for="Price"></label>
+                <input type="number" min="0" max="100000" step="0.01" asp-for="Price" /> &#8381
+                <span asp-validation-for="Price"></span>
+            </div>
+            <div>
+                <label asp-for="Discount"></label>
+                <input id ="discount" type="number" min="0" max="100" step="0.01" asp-for="Discount" /> %
+                <span asp-validation-for="Discount"></span>
+            </div>
+            <div>
+                <label asp-for="IsInStock"></label>
+                <input asp-for="IsInStock" />
+                <span asp-validation-for="IsInStock"></span>
+            </div>
+            <div id="sizes">
+                <label asp-for="Sizes"></label>
+                @if (Model.Sizes.Any())
+                {
+                    @foreach (Size size in Model.Sizes)
+                    {
+                        <input class="size" id="sizeValues" name="sizeValues" type="number" min="0" max="300" step="0.5" value="@size.SizeValue" />
+                    }
+                }                
+                <input class="size" id="sizeValues" name="sizeValues" type="number" min="0" max="300" step="0.5" />                
+            </div>
+            <div>
+                <label asp-for="IsDisplayed"></label>
+                <input asp-for="IsDisplayed" />
+                <span asp-validation-for="IsDisplayed"></span>
+            </div>
+            <div>
+                <label asp-for="IsNovelty"></label>
+                <input asp-for="IsNovelty" />
+                <span asp-validation-for="IsNovelty"></span>
+            </div>
+            <div>
+                <label asp-for="MetaDescription"></label>
+                <input id="metaDescription" asp-for="MetaDescription" />
+                <span asp-validation-for="MetaDescription"></span>
+            </div>
+            <div>
+                <label asp-for="MetaKeywords"></label>
+                <input id="metaKeywords" asp-for="MetaKeywords" />
+                <span asp-validation-for="MetaKeywords"></span>
+            </div>
+            <input type="submit" value="Сохранить" />
+        </form>
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+        var newCKEditor = CKEDITOR.replace('@Html.IdFor(x=>x.Description)');
+        newCKEditor.updateElement();
+    }
+</script>
