@@ -1,4 +1,5 @@
-﻿using GnomShop.Models;
+﻿using GnomShop.Domain;
+using GnomShop.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,14 +13,17 @@ namespace GnomShop.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly DataManager dataManager;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, DataManager dataManager )
         {
             _logger = logger;
+            this.dataManager = dataManager;
         }
 
         public IActionResult Index()
         {
+            ViewBag.PageTitle = dataManager.Pages.GetPageTitleByCodeWord("PageIndex");
             return View();
         }
 

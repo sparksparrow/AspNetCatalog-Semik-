@@ -66,6 +66,7 @@ namespace GnomShop.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductItemType = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
                     Discount = table.Column<int>(type: "int", nullable: false),
@@ -230,12 +231,12 @@ namespace GnomShop.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "96ba8f64-053a-4574-a0bb-b73ecc88c761", "5e0a191b-10f1-4924-a439-7b371981984f", "admin", "ADMIN" });
+                values: new object[] { "96ba8f64-053a-4574-a0bb-b73ecc88c761", "8437c359-c8b0-4c56-b4e2-859372d2a835", "admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "4c6e757b-ecb2-40a8-94fe-a2d3ecca28ca", 0, "40a4f469-a7de-4810-9877-b3c43cd2be8e", "nikita_semik2000@mail.ru", true, false, null, "nikita_semik2000@mail.ru", "ADMIN", "AQAAAAEAACcQAAAAECHH8aMnmChhohpiyz/ijlVA5QsayAbM58QcWwqHaNYdIpBzGur1TLTkl6hI11zwEA==", null, false, "", false, "admin" });
+                values: new object[] { "4c6e757b-ecb2-40a8-94fe-a2d3ecca28ca", 0, "8e59a86f-89dd-4dda-92d1-ac9c0f705dea", "nikita_semik2000@mail.ru", true, false, null, "nikita_semik2000@mail.ru", "ADMIN", "AQAAAAEAACcQAAAAEEU5Ijv6XDsxNRNVznf1Z8/u9TPmy5UIcnpOyfAOUm8uXlPGtcjSoLz7fBlI6bbtgQ==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "PageTitles",

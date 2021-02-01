@@ -89,3 +89,9 @@ D:\C++ projects\GnomShop\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\_ViewSt
 D:\C++ projects\GnomShop\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PageTitles\Edit.cshtml.g.cs
 D:\C++ projects\GnomShop\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Products\Edit.cshtml.g.cs
 D:\C++ projects\GnomShop\obj\Debug\netcoreapp3.1\GnomShop.csprojAssemblyReference.cache
+D:\C++ projects\GnomShop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\HeaderPartial.cshtml.g.cs
+D:\C++ projects\GnomShop\obj\Debug\netcoreapp3.1\Razor\Views\Products\Index.cshtml.g.cs
+D:\C++ projects\GnomShop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\CssPartial.cshtml.g.cs
+D:\C++ projects\GnomShop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\FooterPartial.cshtml.g.cs
+D:\C++ projects\GnomShop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\ScriptsPartial.cshtml.g.cs
+D:\C++ projects\GnomShop\obj\Debug\netcoreapp3.1\Razor\Views\Products\Show.cshtml.g.cs

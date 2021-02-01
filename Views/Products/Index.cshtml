@@ -1,0 +1,17 @@
+﻿@model IQueryable<ProductItem>
+
+
+@if (Model.Any())
+{
+    <ul>
+        @foreach (ProductItem entity in Model)
+        {
+            <li>
+                <a asp-area="" asp-controller="Products" asp-action="Index" asp-route-id="@entity.Id">
+                    <img src="~/images/ProductItems/@entity.Id/@entity.Images.FirstOrDefault().Name" alt="@entity.Images.FirstOrDefault().Alt" />
+                </a>
+                <h4>@entity.Name</h4>
+            </li>
+        }
+    </ul>
+}

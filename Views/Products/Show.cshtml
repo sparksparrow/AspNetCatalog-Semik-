@@ -1,0 +1,35 @@
+﻿@model ProductItem
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.Description = Model.MetaDescription;
+    ViewBag.Keywords = Model.MetaKeywords;
+}
+
+<div>
+    <h1>
+        @Model.Name
+    </h1>
+    <div>
+        @if (Model.Images.Any())
+        {
+            @foreach (Image image in Model.Images)
+            {
+                <img class="feature-image" src="~/images/ProductItems/@image.ProductItemId/@image.Name" alt="@image.Alt" />
+            }
+        }
+    </div>
+    <div>
+        @if (Model.Sizes.Any())
+        {
+            @foreach (Size size in Model.Sizes)
+            {
+                <div>
+                    @size.SizeValue
+                </div>
+            }
+        }
+    </div>
+</div>
+<div>
+    @Html.Raw(Model.Description)
+</div>

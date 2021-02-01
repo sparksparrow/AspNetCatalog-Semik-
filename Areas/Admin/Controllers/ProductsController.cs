@@ -14,15 +14,14 @@ namespace GnomShop.Areas.Admin.Controllers
     [Area("Admin")]
     public class ProductsController : Controller
     {
+        private readonly string[] permittedExtensions = { ".png", ".jpg", ".jpeg" };
         private readonly DataManager dataManager;
-        private readonly IWebHostEnvironment webHostEnvironment;
 
         public string GetImagesDirectory { get; private set; }
 
-        public ProductsController(DataManager dataManager, IWebHostEnvironment webHostEnvironment)
+        public ProductsController(DataManager dataManager)
         {
             this.dataManager = dataManager;
-            this.webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Edit(Guid id)
@@ -49,7 +48,12 @@ namespace GnomShop.Areas.Admin.Controllers
                 if (titleImageFiles != null && titleImageFiles.Any())
                 {
                     foreach (var img in titleImageFiles)
-                    {                        
+                    {
+                        var ext = Path.GetExtension(img.FileName).ToLowerInvariant();
+
+                        if (img.Length > Config.FileSizeLimit || string.IsNullOrEmpty(ext) || !permittedExtensions.Contains(ext))
+                            continue;
+
                         model.Images.Add(new Image(img.FileName));  
 
                         using (var stream = new FileStream(

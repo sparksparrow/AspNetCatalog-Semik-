@@ -4,6 +4,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GnomShop.Models
 {
+    public enum ProductItemType
+    {
+        [Display(Name = "Костюм")]
+        Costume,
+        [Display(Name = "Платье")]
+        Dress,
+        [Display(Name = "Юбка")]
+        Skirt
+    }
+
     public class ProductItem : EntityBase
     {
         public ProductItem() : base()
@@ -16,6 +26,11 @@ namespace GnomShop.Models
             IsDisplayed = false;
             IsNovelty = false;
         }
+
+        [Required(ErrorMessage = "Отсутствует тип товара")]
+        [Display(Name = "Тип товара")]
+        public ProductItemType ProductItemType { get; set; }
+
         [Required(ErrorMessage = "Отсутствует название товара")]
         [Display(Name = "Название товара")]
         public string Name { get; set; }

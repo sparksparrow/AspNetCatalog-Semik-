@@ -19,7 +19,7 @@ namespace GnomShop.Domain.Repositories.EF
 
         public IQueryable<ProductItem> GetProducts()
         {
-            return context.ProductItems;
+            return context.ProductItems.Include(product => product.Sizes).Include(product => product.Images);
         }
 
         public ProductItem GetProductById(Guid id)

@@ -4,26 +4,31 @@
 //    $('#metaDescription').val($(this).val());
 //    alert($('#metaDescription').val());
 //}    
+$(document).ready(function () {
 
-$('#nameItem').change(function () {
-    $('#metaKeywords').val($(this).val() + ", ");
-})
-
-$('#sizes').change(function () {
-
-    let filled = true;
-
-    $('.size').each(function () {
-        if ($(this).val() == '') {
-            filled = false;
-        }
+    $('#nameItem').change(function () {
+        $('#metaKeywords').val($(this).val() + ", ");
+        $('#titleItem').val($(this).val());
     })
 
-    if (filled) {
-        var htmlInputSize = "<input class='size' id='sizeValues' name='sizeValues'  type='number' min='0' max='300' step='0.5' />";
-        $('#sizes').append(htmlInputSize);
-    }
+    $('#sizes').change(function () {
+
+        let filled = true;
+
+        $('.size').each(function () {
+            if ($(this).val() == '') {
+                filled = false;
+            }
+        })
+
+        if (filled) {
+            var htmlInputSize = "<input class='size' id='sizeValues' name='sizeValues'  type='number' min='0' max='300' step='0.5' />";
+            $('#sizes').append(htmlInputSize);
+        }
+    });
+
 });
+
 
 function handleFiles(files) {
 

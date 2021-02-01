@@ -1,4 +1,5 @@
 ﻿@model ProductItem
+
 @{
     string pageTitle = "Редактировать запись";
     ViewBag.Title = pageTitle;
@@ -10,12 +11,17 @@
         <form asp-area="Admin" asp-controller="Products" asp-action="Edit" method="post" enctype="multipart/form-data">
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="Images" />
+            <input type="hidden" asp-for="Sizes" />
 
             <div asp-validation-summary="All"></div>
             <div>
                 <label asp-for="Title"></label>
-                <input asp-for="Title" />
+                <input id="titleItem" asp-for="Title" />
                 <span asp-validation-for="Title"></span>
+            </div>
+            <div>
+                <label asp-for="@Model.ProductItemType"></label>
+                <select asp-for="@Model.ProductItemType" asp-items="@Html.GetEnumSelectList<ProductItemType>()"></select>
             </div>
             <div>
                 <label asp-for="Name"></label>
@@ -33,9 +39,9 @@
                 <div id="preview">
                     @if (Model.Images != null && Model.Images.Any())
                     {
-                        @foreach (Image img in Model.Images)
+                        @foreach (Image image in Model.Images)
                         {
-                            <img class="image" src="~/images/ProductItems/@img.ProductItemId/@img.Name" />
+                            <img class="image" src="~/images/ProductItems/@image.ProductItemId/@image.Name" />
                         }
                     }
                 </div>
@@ -47,7 +53,7 @@
             </div>
             <div>
                 <label asp-for="Discount"></label>
-                <input id ="discount" type="number" min="0" max="100" step="0.01" asp-for="Discount" /> %
+                <input id="discount" type="number" min="0" max="100" step="0.01" asp-for="Discount" /> %
                 <span asp-validation-for="Discount"></span>
             </div>
             <div>
@@ -63,8 +69,8 @@
                     {
                         <input class="size" id="sizeValues" name="sizeValues" type="number" min="0" max="300" step="0.5" value="@size.SizeValue" />
                     }
-                }                
-                <input class="size" id="sizeValues" name="sizeValues" type="number" min="0" max="300" step="0.5" />                
+                }
+                <input class="size" id="sizeValues" name="sizeValues" type="number" min="0" max="300" step="0.5" />
             </div>
             <div>
                 <label asp-for="IsDisplayed"></label>
@@ -96,4 +102,5 @@
         var newCKEditor = CKEDITOR.replace('@Html.IdFor(x=>x.Description)');
         newCKEditor.updateElement();
     }
+
 </script>
