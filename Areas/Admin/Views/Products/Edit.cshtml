@@ -21,7 +21,7 @@
             </div>
             <div>
                 <label asp-for="@Model.ProductItemType"></label>
-                <select asp-for="@Model.ProductItemType" asp-items="@Html.GetEnumSelectList<ProductItemType>()"></select>
+                <select id="productItemType" asp-for="@Model.ProductItemType" asp-items="@Html.GetEnumSelectList<ProductItemType>()"></select>
             </div>
             <div>
                 <label asp-for="Name"></label>

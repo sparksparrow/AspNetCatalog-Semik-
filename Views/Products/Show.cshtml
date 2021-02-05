@@ -14,8 +14,25 @@
         {
             @foreach (Image image in Model.Images)
             {
-                <img class="feature-image" src="~/images/ProductItems/@image.ProductItemId/@image.Name" alt="@image.Alt" />
+                <img src="~/images/ProductItems/@image.ProductItemId/@image.Name" alt="@image.Alt" />
             }
+        }
+        else
+        {
+            <img src="~/images/DefaultImages/Soon.png" alt="В процессе добавления." />
+        }
+    </div>
+    <div>
+        <h4>@Model.Name</h4>
+        @if (Model.Discount == 0)
+        {
+            <h5>@Model.Price</h5>
+        }
+        else
+        {
+            <s>@Model.Price</s>
+            <h5>@Math.Round(Model.Price*(1- Model.Discount*0.01))</h5>
+            <h6>Скидка @Model.Discount%</h6>
         }
     </div>
     <div>

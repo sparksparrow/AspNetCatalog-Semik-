@@ -7,9 +7,27 @@
 $(document).ready(function () {
 
     $('#nameItem').change(function () {
-        $('#metaKeywords').val($(this).val() + ", ");
         $('#titleItem').val($(this).val());
     })
+
+    $('#nameItem').val($('#productItemType option:selected').text() + " ");
+    $('#metaKeywords').val($('#productItemType option:selected').text() + ", ");
+
+    $('#productItemType').change(function () {
+
+        let selectedWords = ['Костюм', 'Платье', 'Юбка'];
+
+        for (var i = 0; i < selectedWords.length; i++) {             
+            $('#nameItem').val($('#nameItem').val().replace(selectedWords[i], ''));
+            $('#metaKeywords').val($('#metaKeywords').val().replace(selectedWords[i] + ", ", ''));
+        }
+        let tempName = $('#nameItem').val();
+                   
+        $('#nameItem').val($('#productItemType option:selected').text() + tempName);
+
+            temp = $('#metaKeywords').val();
+            $('#metaKeywords').val(temp + $('#productItemType option:selected').text() + ", ");
+        });
 
     $('#sizes').change(function () {
 
@@ -32,7 +50,12 @@ $(document).ready(function () {
 
 function handleFiles(files) {
 
-    //document.getElementsByClassName("image-new").remove();
+    
+    let preview = document.getElementById("preview");
+
+    while (preview.firstChild) {
+        preview.removeChild(preview.firstChild);
+        }    
     
     for (let i = 0; i < files.length; i++) {
         let file = files[i];
@@ -40,9 +63,9 @@ function handleFiles(files) {
         if (!file.type.startsWith('image/')) { continue }
 
         let img = document.createElement("img");
-        img.classList.add("image", "image-new");
+        img.classList.add("image");
         img.file = file;
-        document.getElementById("preview").appendChild(img);
+        preview.appendChild(img);
 
         let reader = new FileReader();
         reader.onload = (function (aImg) { return function (e) { aImg.src = e.target.result; }; })(img);

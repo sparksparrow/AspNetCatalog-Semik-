@@ -18,6 +18,7 @@ namespace GnomShop.Models
     {
         public ProductItem() : base()
         {
+            DateAdded = DateTime.UtcNow;
             Price = 0;
             Discount = 0;
             IsInStock = true;
@@ -64,5 +65,9 @@ namespace GnomShop.Models
         [Required(ErrorMessage = "Отсутствует статус новинки товара")]
         [Display(Name = "Новинка")]
         public bool IsNovelty { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Дата")]
+        public DateTime DateAdded { get; set; }
     }
 }

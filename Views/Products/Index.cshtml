@@ -1,5 +1,24 @@
-﻿@model IQueryable<ProductItem>
+﻿@model PaginatedList<ProductItem>
 
+<div>
+    <a asp-action="Index" asp-route-currentFilter="@ViewData["CurrentFilter"]">Сначала новые</a>
+
+    <a asp-action="Index" asp-route-sortOrder="price_asc" asp-route-currentFilter="@ViewData["CurrentFilter"]">Сначала дешевле</a>
+
+    <a asp-action="Index" asp-route-sortOrder="price_desc" asp-route-currentFilter="@ViewData["CurrentFilter"]">Сначала дороже</a>
+
+    <a asp-action="Index" asp-route-sortOrder="discount_desc" asp-route-currentFilter="@ViewData["CurrentFilter"]">По размеру скидки</a>
+</div>
+
+<form asp-action="Index" method="get">
+    <div>
+        <p>
+            Найти: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Найти" /> |
+            <a asp-action="Index">Сбросить</a>
+        </p>
+    </div>
+</form>
 
 @if (Model.Any())
 {
@@ -8,10 +27,47 @@
         {
             <li>
                 <a asp-area="" asp-controller="Products" asp-action="Index" asp-route-id="@entity.Id">
-                    <img src="~/images/ProductItems/@entity.Id/@entity.Images.FirstOrDefault().Name" alt="@entity.Images.FirstOrDefault().Alt" />
+                    @if (entity.Images.FirstOrDefault() != default)
+                    {
+                        <img src="~/images/ProductItems/@entity.Id/@entity.Images.FirstOrDefault().Name" alt="@entity.Images.FirstOrDefault().Alt" />
+                    }
+                    else
+                    {
+                        <img src="~/images/DefaultImages/Soon.png" alt="В процессе добавления." />
+                    }
                 </a>
                 <h4>@entity.Name</h4>
+                @if (entity.Discount == 0)
+                {
+                    <h5>@entity.Price</h5>
+                }
+                else
+                {
+                    <s>@entity.Price</s>
+                    <h5>@Math.Round(entity.Price * (1 - entity.Discount * 0.01))</h5>
+                    <h6>Скидка @entity.Discount%</h6>
+                }
             </li>
         }
     </ul>
+}
+
+@if (Model.HasPreviousPage)
+{
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageIndex=@(Model.PageIndex - 1)
+       asp-route-currentFilter="@ViewData["CurrentFilter"]">
+        Предыдущая
+    </a>
+}
+
+@if (Model.HasNextPage)
+{
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageIndex=@(Model.PageIndex+1)
+       asp-route-currentFilter="@ViewData["CurrentFilter"]">
+        Следующая
+    </a>
 }

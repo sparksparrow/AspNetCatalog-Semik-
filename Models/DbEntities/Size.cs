@@ -32,5 +32,10 @@ namespace GnomShop.Models
                 return (SizeValue == size.SizeValue);
             }
         }
+
+        public override int GetHashCode()
+        {
+            return Tuple.Create(SizeValue).GetHashCode();
+        }
     }
 }

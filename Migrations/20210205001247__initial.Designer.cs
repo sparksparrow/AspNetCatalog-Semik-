@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GnomShop.Migrations
 {
     [DbContext(typeof(CatalogDbContext))]
-    [Migration("20210131225230__initial")]
+    [Migration("20210205001247__initial")]
     partial class _initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -106,6 +106,9 @@ namespace GnomShop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .HasMaxLength(5000)
                         .HasColumnType("nvarchar(max)");
@@ -198,7 +201,7 @@ namespace GnomShop.Migrations
                         new
                         {
                             Id = "96ba8f64-053a-4574-a0bb-b73ecc88c761",
-                            ConcurrencyStamp = "8437c359-c8b0-4c56-b4e2-859372d2a835",
+                            ConcurrencyStamp = "734fc36f-7481-4782-942f-61ec56112815",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -297,13 +300,13 @@ namespace GnomShop.Migrations
                         {
                             Id = "4c6e757b-ecb2-40a8-94fe-a2d3ecca28ca",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8e59a86f-89dd-4dda-92d1-ac9c0f705dea",
+                            ConcurrencyStamp = "3209c2fd-5fc0-46a9-9689-b73b3b7617af",
                             Email = "nikita_semik2000@mail.ru",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "nikita_semik2000@mail.ru",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEU5Ijv6XDsxNRNVznf1Z8/u9TPmy5UIcnpOyfAOUm8uXlPGtcjSoLz7fBlI6bbtgQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMLDk9vuX+uj98bjcAPnzRvfHw37gfJttkgeQ+vkpXzoIbOdf0tyNcJ38/uzuNCyhA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

@@ -74,6 +74,7 @@ namespace GnomShop.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: true),
                     IsDisplayed = table.Column<bool>(type: "bit", nullable: false),
                     IsNovelty = table.Column<bool>(type: "bit", nullable: false),
+                    DateAdded = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(240)", maxLength: 240, nullable: true),
                     MetaDescription = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
                     MetaKeywords = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true)
@@ -231,12 +232,12 @@ namespace GnomShop.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "96ba8f64-053a-4574-a0bb-b73ecc88c761", "8437c359-c8b0-4c56-b4e2-859372d2a835", "admin", "ADMIN" });
+                values: new object[] { "96ba8f64-053a-4574-a0bb-b73ecc88c761", "734fc36f-7481-4782-942f-61ec56112815", "admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "4c6e757b-ecb2-40a8-94fe-a2d3ecca28ca", 0, "8e59a86f-89dd-4dda-92d1-ac9c0f705dea", "nikita_semik2000@mail.ru", true, false, null, "nikita_semik2000@mail.ru", "ADMIN", "AQAAAAEAACcQAAAAEEU5Ijv6XDsxNRNVznf1Z8/u9TPmy5UIcnpOyfAOUm8uXlPGtcjSoLz7fBlI6bbtgQ==", null, false, "", false, "admin" });
+                values: new object[] { "4c6e757b-ecb2-40a8-94fe-a2d3ecca28ca", 0, "3209c2fd-5fc0-46a9-9689-b73b3b7617af", "nikita_semik2000@mail.ru", true, false, null, "nikita_semik2000@mail.ru", "ADMIN", "AQAAAAEAACcQAAAAEMLDk9vuX+uj98bjcAPnzRvfHw37gfJttkgeQ+vkpXzoIbOdf0tyNcJ38/uzuNCyhA==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "PageTitles",
