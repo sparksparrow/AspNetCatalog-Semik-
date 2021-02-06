@@ -17,12 +17,14 @@ namespace GnomShop.Controllers
         {
             this.dataManager = dataManager;
         }
-        public async Task<IActionResult> Index(Guid id, string sortOrder, string currentFilter, string searchString, ushort pageIndex = 0)
+        public async Task<IActionResult> Index(Guid id, string sortOrder, string currentFilter, string searchString, ushort minValue, ushort maxValue, ushort[] sizeValues, ushort pageIndex = 0)
         {
             if (id != default)
             {
                 return View("Show", dataManager.ProductItems.GetProductById(id));
-            }          
+            }
+
+            ViewBag.PageTitle = dataManager.Pages.GetPageTitleByCodeWord("PageCatalog");
 
             if (searchString != null)
             {
@@ -34,34 +36,41 @@ namespace GnomShop.Controllers
             }
 
             ViewData["CurrentFilter"] = searchString;
+            ViewData["CurrentSort"] = sortOrder;
             var products = dataManager.ProductItems.GetProducts().Select(p => p);
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 products = products.Where(s => s.Name.Contains(searchString));           
             }
-           
-            switch (sortOrder)
+             
+            if (maxValue != default && maxValue>minValue)
             {
-                case "price_desc":
-                    products = products.OrderByDescending(p => p.Price * (1 - p.Discount * 0.01));
-                    break;
-                case "price_asc":
-                    products = products.OrderBy(p => p.Price * (1 - p.Discount * 0.01));
-                    break;
-                case "discount_desc":
-                    products = products.OrderByDescending(p => p.Discount);
-                    break;
-                default:
-                    products = products.OrderByDescending(p => p.DateAdded);                    
-                    break;
-            }
-          
-            ViewBag.PageTitle = dataManager.Pages.GetPageTitleByCodeWord("PageCatalog");
+                var selectedProducts = products.Where(p => p.TotalPrice >= minValue && p.TotalPrice <= maxValue);
+                if (selectedProducts.Any())
+                {
+                    products = selectedProducts;
+                    @ViewData["MinValue"] = minValue;
+                    @ViewData["MaxValue"] = maxValue;
 
-            int pageSize = 4;
+                }
+                else
+                {
+                    @ViewData["MinValue"] = minValue;
+                    @ViewData["MaxValue"] = null;
+                }                
+            }
+
+            ViewData["SizeValues"] = dataManager.Sizes.GetSizes().Select(p=>p.SizeValue).Distinct().OrderBy(p => p).ToList();
             
-            return View(await PaginatedList<ProductItem>.CreateAsync(products.AsNoTracking(), pageIndex, pageSize));
+                foreach (double value in sizeValues)
+                {
+                    products = products.Where(p => p.Sizes.Contains(new Size(value)));
+                }
+
+            products = dataManager.ProductItems.GetProducts().Select(p => p);
+
+            return View(await CatalogViewModel.CreateAsync(products.AsNoTracking(), pageIndex, sortOrder));
         }
     }
 }

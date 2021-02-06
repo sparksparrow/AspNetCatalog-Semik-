@@ -1,7 +1,6 @@
 ﻿using GnomShop.Domain;
 using GnomShop.Models;
 using GnomShop.Services;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -45,6 +44,9 @@ namespace GnomShop.Areas.Admin.Controllers
                             model.Sizes.Add(new Size(size.GetValueOrDefault()));                        
                     }
                 }
+
+                model.TotalPrice = @Math.Round(model.Price * (1 - model.Discount * 0.01));
+
                 if (titleImageFiles != null && titleImageFiles.Any())
                 {
                     foreach (var img in titleImageFiles)

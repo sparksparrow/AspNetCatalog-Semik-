@@ -145,6 +145,9 @@ namespace GnomShop.Migrations
                         .HasMaxLength(240)
                         .HasColumnType("nvarchar(240)");
 
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
+
                     b.HasKey("Id");
 
                     b.ToTable("ProductItems");
@@ -199,7 +202,7 @@ namespace GnomShop.Migrations
                         new
                         {
                             Id = "96ba8f64-053a-4574-a0bb-b73ecc88c761",
-                            ConcurrencyStamp = "734fc36f-7481-4782-942f-61ec56112815",
+                            ConcurrencyStamp = "431db11e-8531-48bc-9483-5b13c0759d4e",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -298,13 +301,13 @@ namespace GnomShop.Migrations
                         {
                             Id = "4c6e757b-ecb2-40a8-94fe-a2d3ecca28ca",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3209c2fd-5fc0-46a9-9689-b73b3b7617af",
+                            ConcurrencyStamp = "390090d0-226e-43f6-af69-c3a139d602c0",
                             Email = "nikita_semik2000@mail.ru",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "nikita_semik2000@mail.ru",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMLDk9vuX+uj98bjcAPnzRvfHw37gfJttkgeQ+vkpXzoIbOdf0tyNcJ38/uzuNCyhA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEcQUTyWcGF4TKR/qdtnDij7UjPt9NBtkwYw8WJX6CcVKnGBM8BuOj+YJVhYdgrA7A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

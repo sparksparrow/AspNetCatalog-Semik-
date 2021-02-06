@@ -11,7 +11,7 @@ namespace GnomShop.Models
         public int PageIndex { get; private set; }
         public int TotalPages { get; private set; }
 
-        public PaginatedList(List<T> productItems, int pageIndex, int pageSize, int count)
+        public PaginatedList(List<T> productItems, int pageIndex, int count, int pageSize)
         {
             PageIndex = pageIndex;            
             TotalPages = (int)Math.Ceiling(count / (double)pageSize);
@@ -40,7 +40,7 @@ namespace GnomShop.Models
             var count = await source.CountAsync();
             pageIndex = pageIndex > (int)Math.Ceiling(count / (double)pageSize) - 1 || pageIndex < 0 ? 0 : pageIndex;
             var items = await source.Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
-            return new PaginatedList<T>(items, pageIndex, pageSize, count);
+            return new PaginatedList<T>(items, pageIndex, count, pageSize);
         }
 
     }

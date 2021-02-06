@@ -30,6 +30,7 @@ namespace GnomShop
             //Связываем интерфейсы и их реализацию (можем заменить реализацию интерфейса EF на любую другую реализацию ORM системы)
             services.AddTransient<IPageTitleRepository, EFPageTitleRepository>();
             services.AddTransient<IProductItemRepository, EFProductItemRepository>();
+            services.AddTransient<ISizeRepository, EFSizeRepository>();
             services.AddTransient<DataManager>();
 
             //Подключем контекст БД

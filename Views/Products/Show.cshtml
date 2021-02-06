@@ -31,7 +31,7 @@
         else
         {
             <s>@Model.Price</s>
-            <h5>@Math.Round(Model.Price*(1- Model.Discount*0.01))</h5>
+            <h5>@Model.TotalPrice</h5>
             <h6>Скидка @Model.Discount%</h6>
         }
     </div>

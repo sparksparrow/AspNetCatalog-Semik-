@@ -5,7 +5,7 @@ namespace GnomShop.Models
 {
     public class Size
     {
-        public Size (double sizeValue)
+        public Size(double sizeValue)
         {
             SizeValue = sizeValue;
         }

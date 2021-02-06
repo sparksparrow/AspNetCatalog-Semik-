@@ -1,5 +1,8 @@
-﻿@model PaginatedList<ProductItem>
+﻿@model CatalogViewModel
+@{
+    List<double> sizes = ViewData["SizeValues"] as List<double>;
 
+}
 <div>
     <a asp-action="Index" asp-route-currentFilter="@ViewData["CurrentFilter"]">Сначала новые</a>
 
@@ -13,17 +16,33 @@
 <form asp-action="Index" method="get">
     <div>
         <p>
-            Найти: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-            <input type="submit" value="Найти" /> |
+            &#128270;<input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Поиск" />
+                     <div>
+                         Выбери ценовой диапозон: <input type="number" id="minValue" name="minValue" value="@ViewData["MinValue"]" placeholder="0" />
+                         - <input type="number" id="maxValue" name="maxValue" value="@ViewData["MaxValue"]" placeholder="@(Model.MaxPrice)" />
+                     </div>
+            <div>
+                @if (sizes.Any())
+                {
+                    @foreach (double size in sizes)
+                    {
+                        <div>
+                            <label>@size</label>
+                            <input class="size" name="sizeValues" type="checkbox" value="@size" />
+                        </div>
+                    }
+                }
+            </div>
+                <input type="submit" value="Применить" /> |
             <a asp-action="Index">Сбросить</a>
         </p>
     </div>
 </form>
 
-@if (Model.Any())
+@if (Model.PaginateProductItems.Any())
 {
     <ul>
-        @foreach (ProductItem entity in Model)
+        @foreach (ProductItem entity in Model.PaginateProductItems)
         {
             <li>
                 <a asp-area="" asp-controller="Products" asp-action="Index" asp-route-id="@entity.Id">
@@ -44,29 +63,33 @@
                 else
                 {
                     <s>@entity.Price</s>
-                    <h5>@Math.Round(entity.Price * (1 - entity.Discount * 0.01))</h5>
+                    <h5>@entity.TotalPrice</h5>
                     <h6>Скидка @entity.Discount%</h6>
                 }
             </li>
         }
     </ul>
 }
+else
+{
+    <h2>Ничего не найдено:(</h2>
+}
 
-@if (Model.HasPreviousPage)
+@if (Model.PaginateProductItems.HasPreviousPage)
 {
     <a asp-action="Index"
        asp-route-sortOrder="@ViewData["CurrentSort"]"
-       asp-route-pageIndex=@(Model.PageIndex - 1)
+       asp-route-pageIndex=@(Model.PaginateProductItems.PageIndex - 1)
        asp-route-currentFilter="@ViewData["CurrentFilter"]">
         Предыдущая
     </a>
 }
 
-@if (Model.HasNextPage)
+@if (Model.PaginateProductItems.HasNextPage)
 {
     <a asp-action="Index"
        asp-route-sortOrder="@ViewData["CurrentSort"]"
-       asp-route-pageIndex=@(Model.PageIndex+1)
+       asp-route-pageIndex=@(Model.PaginateProductItems.PageIndex+1)
        asp-route-currentFilter="@ViewData["CurrentFilter"]">
         Следующая
     </a>

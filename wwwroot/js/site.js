@@ -1,32 +1,13 @@
-﻿//$('body > p').change(function () {
-//    alert('s');
-//    alert($(this).val());
-//    $('#metaDescription').val($(this).val());
-//    alert($('#metaDescription').val());
-//}    
-$(document).ready(function () {
+﻿$(document).ready(function () {
 
     $('#nameItem').change(function () {
         $('#titleItem').val($(this).val());
     })
 
-    $('#nameItem').val($('#productItemType option:selected').text() + " ");
-    $('#metaKeywords').val($('#productItemType option:selected').text() + ", ");
+    synchSEOWords();
 
     $('#productItemType').change(function () {
-
-        let selectedWords = ['Костюм', 'Платье', 'Юбка'];
-
-        for (var i = 0; i < selectedWords.length; i++) {             
-            $('#nameItem').val($('#nameItem').val().replace(selectedWords[i], ''));
-            $('#metaKeywords').val($('#metaKeywords').val().replace(selectedWords[i] + ", ", ''));
-        }
-        let tempName = $('#nameItem').val();
-                   
-        $('#nameItem').val($('#productItemType option:selected').text() + tempName);
-
-            temp = $('#metaKeywords').val();
-            $('#metaKeywords').val(temp + $('#productItemType option:selected').text() + ", ");
+        synchSEOWords();
         });
 
     $('#sizes').change(function () {
@@ -48,9 +29,7 @@ $(document).ready(function () {
 });
 
 
-function handleFiles(files) {
-
-    
+function handleFiles(files) {    
     let preview = document.getElementById("preview");
 
     while (preview.firstChild) {
@@ -71,4 +50,19 @@ function handleFiles(files) {
         reader.onload = (function (aImg) { return function (e) { aImg.src = e.target.result; }; })(img);
         reader.readAsDataURL(file);
     }
+}
+
+function synchSEOWords() {
+    let selectedWords = ['Костюм', 'Платье', 'Юбка'];
+
+    for (var i = 0; i < selectedWords.length; i++) {
+        $('#nameItem').val($('#nameItem').val().replace(selectedWords[i], ''));
+        $('#metaKeywords').val($('#metaKeywords').val().replace(selectedWords[i] + ", ", ''));
+    }
+    let tempName = $('#nameItem').val();
+
+    $('#nameItem').val($('#productItemType option:selected').text() + tempName);
+
+    temp = $('#metaKeywords').val();
+    $('#metaKeywords').val(temp + $('#productItemType option:selected').text() + ", ");
 }

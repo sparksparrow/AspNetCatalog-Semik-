@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using GnomShop.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,6 +13,6 @@ namespace GnomShop.Services
         public static string CutController(this string str)
         {
             return str.Replace("Controller", "");
-        }        
+        }                    
     }
 }

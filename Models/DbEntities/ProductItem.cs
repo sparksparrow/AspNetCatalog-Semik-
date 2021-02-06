@@ -21,6 +21,7 @@ namespace GnomShop.Models
             DateAdded = DateTime.UtcNow;
             Price = 0;
             Discount = 0;
+            TotalPrice = 0;
             IsInStock = true;
             Sizes = new List<Size>();
             Images = new List<Image>();
@@ -43,6 +44,10 @@ namespace GnomShop.Models
         [Range(0, 100, ErrorMessage = "Недопустимая скидка")]
         [Display(Name = "Скидка")]
         public int Discount { get; set; }
+
+        [Range(0, 1000000, ErrorMessage = "Недопустимая цена")]
+        [Display(Name = "Цена со скидкой")]
+        public double TotalPrice { get; set; }        
 
         [Required(ErrorMessage = "Отсутствует статус о наличии товара")]
         [Display(Name = "В наличии")]
