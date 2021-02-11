@@ -95,3 +95,4 @@ D:\C++ projects\GnomShop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\FooterPartia
 D:\C++ projects\GnomShop\obj\Debug\netcoreapp3.1\Razor\Views\Shared\ScriptsPartial.cshtml.g.cs
 D:\C++ projects\GnomShop\obj\Debug\netcoreapp3.1\Razor\Views\Products\Show.cshtml.g.cs
 D:\C++ projects\GnomShop\obj\Debug\netcoreapp3.1\GnomShop.csprojAssemblyReference.cache
+D:\C++ projects\GnomShop\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Products\ScriptsPartial.cshtml.g.cs

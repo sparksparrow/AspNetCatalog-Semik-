@@ -1,48 +1,71 @@
 ﻿@model CatalogViewModel
 @{
-    List<double> sizes = ViewData["SizeValues"] as List<double>;
+    Dictionary<double, bool> sizes = Model.ViewFilterProductItems.SizeValues;
+    var paginateProductItems = Model.PaginateProductItems;
 
+    Nullable<ushort> minValue = Model.ViewFilterProductItems.MinValue;
+    Nullable<ushort> maxValue = Model.ViewFilterProductItems.MaxValue;
+
+    if (minValue == 0) minValue = null;
+    if (maxValue == 0) maxValue = null;
+
+    var searchString = Model.ViewFilterProductItems.SearchString;
+
+    double[] sizesArray = sizes.Where(s => s.Value).Select(s => s.Key).ToArray();
+
+    var currentSizeValues = string.Join(",", sizesArray);
 }
+
 <div>
-    <a asp-action="Index" asp-route-currentFilter="@ViewData["CurrentFilter"]">Сначала новые</a>
+    <a asp-action="Index" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues>Сначала новые</a>
 
-    <a asp-action="Index" asp-route-sortOrder="price_asc" asp-route-currentFilter="@ViewData["CurrentFilter"]">Сначала дешевле</a>
+    <a asp-action="Index" asp-route-sortOrder="price_asc" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues>Сначала дешевле</a>
 
-    <a asp-action="Index" asp-route-sortOrder="price_desc" asp-route-currentFilter="@ViewData["CurrentFilter"]">Сначала дороже</a>
+    <a asp-action="Index" asp-route-sortOrder="price_desc" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues>Сначала дороже</a>
 
-    <a asp-action="Index" asp-route-sortOrder="discount_desc" asp-route-currentFilter="@ViewData["CurrentFilter"]">По размеру скидки</a>
+    <a asp-action="Index" asp-route-sortOrder="discount_desc" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues>По размеру скидки</a>
 </div>
 
 <form asp-action="Index" method="get">
     <div>
         <p>
-            &#128270;<input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Поиск" />
-                     <div>
-                         Выбери ценовой диапозон: <input type="number" id="minValue" name="minValue" value="@ViewData["MinValue"]" placeholder="0" />
-                         - <input type="number" id="maxValue" name="maxValue" value="@ViewData["MaxValue"]" placeholder="@(Model.MaxPrice)" />
-                     </div>
+            &#128270;<input type="text" name="searchString" value=@searchString placeholder="Поиск" />
             <div>
-                @if (sizes.Any())
+                Выбери ценовой диапозон: <input type="number" id="minValue" name="minValue" value=@minValue placeholder="0" />
+                - <input type="number" id="maxValue" name="maxValue" value=@maxValue placeholder="@(Model.MaxPrice)" />
+            </div>
+            <div>
+                @if (sizes != null && sizes.Any())
                 {
-                    @foreach (double size in sizes)
+                    @foreach (var size in sizes)
                     {
-                        <div>
-                            <label>@size</label>
-                            <input class="size" name="sizeValues" type="checkbox" value="@size" />
-                        </div>
+                        @if (size.Value)
+                        {
+                            <div>
+                                <label>@size.Key</label>
+                                <input class="size" name="sizeValues" type="checkbox" value="@size.Key" checked="checked" />
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                <label>@size.Key</label>
+                                <input class="size" name="sizeValues" type="checkbox" value="@size.Key" />
+                            </div>
+                        }
                     }
                 }
             </div>
-                <input type="submit" value="Применить" /> |
+            <input type="submit" value="Применить" /> |
             <a asp-action="Index">Сбросить</a>
         </p>
     </div>
 </form>
 
-@if (Model.PaginateProductItems.Any())
+@if (paginateProductItems != null && paginateProductItems.Any())
 {
     <ul>
-        @foreach (ProductItem entity in Model.PaginateProductItems)
+        @foreach (ProductItem entity in paginateProductItems)
         {
             <li>
                 <a asp-area="" asp-controller="Products" asp-action="Index" asp-route-id="@entity.Id">
@@ -75,22 +98,28 @@ else
     <h2>Ничего не найдено:(</h2>
 }
 
-@if (Model.PaginateProductItems.HasPreviousPage)
+@if (paginateProductItems.HasPreviousPage)
 {
     <a asp-action="Index"
        asp-route-sortOrder="@ViewData["CurrentSort"]"
-       asp-route-pageIndex=@(Model.PaginateProductItems.PageIndex - 1)
-       asp-route-currentFilter="@ViewData["CurrentFilter"]">
+       asp-route-pageIndex=@(paginateProductItems.PageIndex - 1)
+       asp-route-currentFilter=@searchString
+       asp-route-minValue=@minValue
+       asp-route-maxValue=@maxValue
+       asp-route-currentSizeValues=@currentSizeValues>
         Предыдущая
     </a>
 }
 
-@if (Model.PaginateProductItems.HasNextPage)
+@if (paginateProductItems.HasNextPage)
 {
     <a asp-action="Index"
        asp-route-sortOrder="@ViewData["CurrentSort"]"
-       asp-route-pageIndex=@(Model.PaginateProductItems.PageIndex+1)
-       asp-route-currentFilter="@ViewData["CurrentFilter"]">
+       asp-route-pageIndex=@(paginateProductItems.PageIndex+1)
+       asp-route-currentFilter=@searchString
+       asp-route-minValue=@minValue
+       asp-route-maxValue=@maxValue
+       asp-route-currentSizeValues=@currentSizeValues>
         Следующая
     </a>
 }

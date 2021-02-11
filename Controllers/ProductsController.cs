@@ -17,7 +17,7 @@ namespace GnomShop.Controllers
         {
             this.dataManager = dataManager;
         }
-        public async Task<IActionResult> Index(Guid id, string sortOrder, string currentFilter, string searchString, ushort minValue, ushort maxValue, ushort[] sizeValues, ushort pageIndex = 0)
+        public async Task<IActionResult> Index(Guid id, string sortOrder, string currentFilter, string searchString, ushort minValue, ushort maxValue, double[] sizeValues = default, string currentSizeValues = default, ushort pageIndex = 0)
         {
             if (id != default)
             {
@@ -35,42 +35,47 @@ namespace GnomShop.Controllers
                 searchString = currentFilter;
             }
 
-            ViewData["CurrentFilter"] = searchString;
-            ViewData["CurrentSort"] = sortOrder;
+            ViewData["CurrentSort"] = sortOrder;            
+
+            Dictionary<double, bool> sizes = dataManager.Sizes.GetSizes().Select(p => p.SizeValue).Distinct().OrderBy(p => p).ToDictionary(k => k, v => false);
+
+            if (sizeValues.Any())
+            {
+                sizes = sizes.Select(s => sizeValues.Contains(s.Key) ? new KeyValuePair<double, bool>(s.Key, true) : s).ToDictionary(pair => pair.Key, pair => pair.Value);
+            }
+            else
+            {
+                if (currentSizeValues != default)
+                {
+                    List<double> listOfSizes = new List<double>();
+                    foreach(var size in currentSizeValues.Split(","))
+                    {
+                        double result = default;
+                        if(double.TryParse(size,out result))
+                        {
+                            listOfSizes.Add(result);
+                        }
+                    }
+                    sizes = sizes.Select(s => listOfSizes.Contains(s.Key) ? new KeyValuePair<double, bool>(s.Key, true) : s).ToDictionary(pair => pair.Key, pair => pair.Value);
+                }
+            }
+
             var products = dataManager.ProductItems.GetProducts().Select(p => p);
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                products = products.Where(s => s.Name.Contains(searchString));           
-            }
-             
-            if (maxValue != default && maxValue>minValue)
-            {
-                var selectedProducts = products.Where(p => p.TotalPrice >= minValue && p.TotalPrice <= maxValue);
-                if (selectedProducts.Any())
-                {
-                    products = selectedProducts;
-                    @ViewData["MinValue"] = minValue;
-                    @ViewData["MaxValue"] = maxValue;
-
-                }
-                else
-                {
-                    @ViewData["MinValue"] = minValue;
-                    @ViewData["MaxValue"] = null;
-                }                
-            }
-
-            ViewData["SizeValues"] = dataManager.Sizes.GetSizes().Select(p=>p.SizeValue).Distinct().OrderBy(p => p).ToList();
-            
-                foreach (double value in sizeValues)
-                {
-                    products = products.Where(p => p.Sizes.Contains(new Size(value)));
-                }
-
-            products = dataManager.ProductItems.GetProducts().Select(p => p);
-
-            return View(await CatalogViewModel.CreateAsync(products.AsNoTracking(), pageIndex, sortOrder));
+            return View(await CatalogViewModel.CreateAsync
+                (
+                new ViewFilter<ProductItem>
+                    (
+                    searchString, 
+                    minValue, 
+                    maxValue,
+                    sizes
+                    ),
+                products.AsNoTracking(), 
+                pageIndex, 
+                sortOrder
+                ));
         }
     }
+    
 }

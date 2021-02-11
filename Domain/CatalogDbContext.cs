@@ -59,12 +59,12 @@ namespace GnomShop.Domain
                 Title = "Каталог"
             });
 
-            builder.Entity<PageTitle>().HasData(new PageTitle
-            {
-                Id = new Guid("6fd4e3f7-f892-407b-ac03-e4354f834dc0"),
-                CodeWord = "PageContacts",
-                Title = "Контакты"
-            });
+            //builder.Entity<PageTitle>().HasData(new PageTitle
+            //{
+            //    Id = new Guid("6fd4e3f7-f892-407b-ac03-e4354f834dc0"),
+            //    CodeWord = "PageContacts",
+            //    Title = "Контакты"
+            //});
 
             builder.Entity<PageTitle>().HasData(new PageTitle
             {
