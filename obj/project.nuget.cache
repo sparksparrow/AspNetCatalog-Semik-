@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vB/5xTdooD1Tyl4+diGLwrJooG229Z8ANIqvaQ8whhwkRYyk8qlvcsiVjEMegmHGJRtaIGMEoY9bYEQHjg1laA==",
+  "dgSpecHash": "7vfH4isGq/qbrb1R6AALMOs3lpqi3F6MQw1rpmfuaut1aNmDu2c2Zy/lku4LGvVHxbePl3ev4XaiYDo0c77YJQ==",
   "success": true,
-  "projectFilePath": "D:\\C++ projects\\GnomShop\\GnomShop.csproj",
+  "projectFilePath": "D:\\C++ projects\\AspNetCatalog-Semik-\\GnomShop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\А\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\А\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.2\\microsoft.aspnetcore.cryptography.internal.5.0.2.nupkg.sha512",

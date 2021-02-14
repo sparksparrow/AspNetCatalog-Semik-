@@ -5879,11 +5879,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\C++ projects\\GnomShop\\GnomShop.csproj",
+      "projectUniqueName": "D:\\C++ projects\\AspNetCatalog-Semik-\\GnomShop.csproj",
       "projectName": "GnomShop",
-      "projectPath": "D:\\C++ projects\\GnomShop\\GnomShop.csproj",
+      "projectPath": "D:\\C++ projects\\AspNetCatalog-Semik-\\GnomShop.csproj",
       "packagesPath": "C:\\Users\\А\\.nuget\\packages\\",
-      "outputPath": "D:\\C++ projects\\GnomShop\\obj\\",
+      "outputPath": "D:\\C++ projects\\AspNetCatalog-Semik-\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
