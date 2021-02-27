@@ -1,4 +1,4 @@
-ï»¿$(document).ready(function () {
+$(document).ready(function () {
 
     $('#nameItem').change(function () {
         $('#titleItem').val($(this).val());
@@ -8,7 +8,7 @@
 
     $('#productItemType').change(function () {
         synchSEOWords();
-        });
+    });
 
     $('#sizes').change(function () {
 
@@ -29,13 +29,13 @@
 });
 
 
-function handleFiles(files) {    
+function handleFiles(files) {
     let preview = document.getElementById("preview");
 
     while (preview.firstChild) {
         preview.removeChild(preview.firstChild);
-        }    
-    
+    }
+
     for (let i = 0; i < files.length; i++) {
         let file = files[i];
 
@@ -43,6 +43,10 @@ function handleFiles(files) {
 
         let img = document.createElement("img");
         img.classList.add("image");
+        img.classList.add("card-img");
+        img.classList.add("rounded-0");
+        img.classList.add("img-fluid");
+
         img.file = file;
         preview.appendChild(img);
 
@@ -53,7 +57,7 @@ function handleFiles(files) {
 }
 
 function synchSEOWords() {
-    let selectedWords = ['ÐšÐ¾ÑÑ‚ÑŽÐ¼', 'ÐŸÐ»Ð°Ñ‚ÑŒÐµ', 'Ð®Ð±ÐºÐ°'];
+    let selectedWords = ['Êîñòþì', 'Ïëàòüå', 'Þáêà'];
 
     for (var i = 0; i < selectedWords.length; i++) {
         $('#nameItem').val($('#nameItem').val().replace(selectedWords[i], ''));

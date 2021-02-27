@@ -19,4 +19,10 @@
     <Folder Include="wwwroot\images\DefaultImages\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\assets\css\templatemo - Копировать.min.css">
+      <DependentUpon>templatemo.min.css</DependentUpon>
+    </Content>
+  </ItemGroup>
+
 </Project>

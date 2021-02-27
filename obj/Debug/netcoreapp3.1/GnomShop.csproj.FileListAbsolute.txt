@@ -175,7 +175,6 @@ D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\V
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Views\Products\Index.cshtml.g.cs
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Views\Products\Show.cshtml.g.cs
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Views\Shared\CssPartial.cshtml.g.cs
@@ -193,3 +192,8 @@ D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\GnomShop.RazorTarge
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\GnomShop.Views.pdb
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\GnomShop.csproj.CopyComplete
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\GnomShop.genruntimeconfig.cache
+D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Views\About\Index.cshtml.g.cs
+D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Views\Contacts\Index.cshtml.g.cs
+D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Modal.cshtml.g.cs
+D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Views\Shared\TopNav.cshtml.g.cs
+D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Products\ScriptsPartial.cshtml.g.cs

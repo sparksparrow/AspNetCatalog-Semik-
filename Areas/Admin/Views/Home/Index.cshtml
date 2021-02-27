@@ -1,11 +1,25 @@
 ﻿@model IQueryable<ProductItem>
 
 <div id="main">
-    <h1>Admin</h1>
+    <div >
+        <br />
+        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
+            <input class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" type="submit" value="Выйти" />
+        </form>
+    </div>
     <div>
-        <h2>Наши продукты</h2>
+        <br />
+        <h3 class="h2 pb-4">Редактировать страницы сайта</h3>
+        <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-area="Admin" asp-controller="PageTitles" asp-action="Edit" asp-route-codeWord="PageIndex">Главная</a>
+        <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-area="Admin" asp-controller="PageTitles" asp-action="Edit" asp-route-codeWord="PageCatalog">Каталог</a>
+        <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-area="Admin" asp-controller="PageTitles" asp-action="Edit" asp-route-codeWord="PageContacts">Контакты</a>
+        <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-area="Admin" asp-controller="PageTitles" asp-action="Edit" asp-route-codeWord="PageAbout">О нас</a>
+    </div>
+    <div>
+        <h2 class="h2 pb-4">Наши продукты</h2>
         <div>
-            <a asp-area="Admin" asp-controller="Products" asp-action="Edit" asp-route-id="">Добавить продукт</a>
+            <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-area="Admin" asp-controller="Products" asp-action="Edit" asp-route-id="">Добавить продукт</a>
+            <br />
         </div>
         @if (Model.Any())
         {
@@ -13,31 +27,19 @@
                 @foreach (ProductItem entity in Model)
                 {
                     <div>
-                        <a asp-area="Admin" asp-controller="Products" asp-action="Edit" asp-route-id="@entity.Id">Редактировать</a>
+                        <a style="display:inline-block;" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-area="Admin" asp-controller="Products" asp-action="Edit" asp-route-id="@entity.Id">Редактировать</a>
                         |
                         <form style="display:inline-block;" id="form-@entity.Id" asp-area="Admin" asp-controller="Products" asp-action="Delete" method="post">
-                            <input type="hidden" name="id" value="@entity.Id" />
-                            <a href="#" onclick="document.getElementById('form-@entity.Id').submit();">Удалить</a>
+                            <input style="display:inline-block;" type="hidden" name="id" value="@entity.Id" />
+                            <a style="display:inline-block;" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#" onclick="document.getElementById('form-@entity.Id').submit();">Удалить</a>
                         </form>
                         |
-                        <a asp-area="" asp-controller="Products" asp-action="Index" asp-route-id="@entity.Id">
-                            @($"{entity.Name}")
+                        <a style="display:inline-block;" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-area="" asp-controller="Products" asp-action="Index" asp-route-id="@entity.Id">
+                            @entity.Name - @entity.TotalPrice &#8381
                         </a>
                     </div>
                 }
             </div>
         }
-    </div>
-    <div>
-        <h3>Редактировать страницы сайта</h3>
-        <a asp-area="Admin" asp-controller="PageTitles" asp-action="Edit" asp-route-codeWord="PageIndex">Главная</a>
-        <a asp-area="Admin" asp-controller="PageTitles" asp-action="Edit" asp-route-codeWord="PageCatalog">Каталог</a>
-        <a asp-area="Admin" asp-controller="PageTitles" asp-action="Edit" asp-route-codeWord="PageContacts">Контакты</a>
-        <a asp-area="Admin" asp-controller="PageTitles" asp-action="Edit" asp-route-codeWord="PageAbout">О нас</a>
-    </div>
-    <div>
-        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
-            <input type="submit" value="Выйти" />
-        </form>
     </div>
 </div>

@@ -7,7 +7,7 @@ namespace GnomShop.Models
 {
     public class CatalogViewModel
     {
-        private static readonly int pageSize = 4;
+        private static readonly int pageSize = 9;
         public ViewFilter<ProductItem> ViewFilterProductItems { get; private set; }
         public PaginatedList<ProductItem> PaginateProductItems { get; private set; }
         public IQueryable<ProductItem> ProductItems { get; private set; }

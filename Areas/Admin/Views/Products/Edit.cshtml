@@ -6,7 +6,8 @@
 }
 
 <div class="form">
-    <h1>@pageTitle</h1>
+    <h1 class="h2 pb-4">@pageTitle</h1>
+    <br />
     <div>
         <form asp-area="Admin" asp-controller="Products" asp-action="Edit" method="post" enctype="multipart/form-data">
             <input type="hidden" asp-for="Id" />
@@ -15,91 +16,116 @@
 
             <div asp-validation-summary="All"></div>
             <div>
-                <label asp-for="Title"></label>
-                <input id="titleItem" asp-for="Title" />
+                <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Title"></label>
+                <input class="form-control" id="titleItem" asp-for="Title" />
                 <span asp-validation-for="Title"></span>
+                <br />
             </div>
             <div>
-                <label asp-for="@Model.ProductItemType"></label>
-                <select id="productItemType" asp-for="@Model.ProductItemType" asp-items="@Html.GetEnumSelectList<ProductItemType>()"></select>
+                <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="@Model.ProductItemType"></label>
+                <select class="form-control" id="productItemType" asp-for="@Model.ProductItemType" asp-items="@Html.GetEnumSelectList<ProductItemType>()"></select>
+                <br />
             </div>
             <div>
-                <label asp-for="Name"></label>
-                <input id="nameItem" asp-for="Name" />
+                <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Name"></label>
+                <input class="form-control" id="nameItem" asp-for="Name" />
                 <span asp-validation-for="Name"></span>
+                <br />
             </div>
             <div>
-                <label asp-for="Description"></label>
-                <input id="description" asp-for="Description" />
+                <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Description"></label>
+                <input class="form-control" id="description" asp-for="Description" />
                 <span asp-validation-for="Description"></span>
+                <br />
             </div>
             <div>
-                <label asp-for="Images"></label>
-                <input type="file" name="titleImageFiles" id="titleImageFiles" onchange="handleFiles(this.files)" multiple="multiple" accept="image/*" />
-                <div id="preview">
+                <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Images"></label>
+                <input class="form-control" type="file" name="titleImageFiles" id="titleImageFiles" onchange="handleFiles(this.files)" multiple="multiple" accept="image/*" />
+                <div class="card mb-4 product-wap rounded-0" id="preview">
                     @if (Model.Images != null && Model.Images.Any())
                     {
                         @foreach (Image image in Model.Images)
                         {
-                            <img class="image" src="~/images/ProductItems/@image.ProductItemId/@image.Name" />
+                            <img class="image card-img rounded-0 img-fluid" src="~/images/ProductItems/@image.ProductItemId/@image.Name" />
                         }
                     }
                 </div>
+                <br />
             </div>
             <div>
-                <label asp-for="Price"></label>
-                <input type="number" min="0" max="100000" step="0.01" asp-for="Price" /> &#8381
+                <label class="collapsed d-flex justify-content-between h3 text-decoration-none">Цена, &#8381</label>
+                <input class="form-control" type="number" min="0" max="100000" step="0.01" asp-for="Price" />
                 <span asp-validation-for="Price"></span>
+                <br />
             </div>
             <div>
-                <label asp-for="Discount"></label>
-                <input id="discount" type="number" min="0" max="100" step="0.01" asp-for="Discount" /> %
+                <label class="collapsed d-flex justify-content-between h3 text-decoration-none">Скида, %</label>
+                <input class="form-control" id="discount" type="number" min="0" max="100" step="0.01" asp-for="Discount" />
                 <span asp-validation-for="Discount"></span>
+                <br />
             </div>
             <div>
-                <label asp-for="IsInStock"></label>
-                <input asp-for="IsInStock" />
+                <div style="display:inline-block;">
+                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="IsInStock"></label>
+                </div>
+                <div style="display:inline-block;">
+                    <input asp-for="IsInStock" />
+                </div>
                 <span asp-validation-for="IsInStock"></span>
+                <br />
             </div>
             <div id="sizes">
-                <label asp-for="Sizes"></label>
+                <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Sizes"></label>
                 @if (Model.Sizes.Any())
                 {
                     @foreach (Size size in Model.Sizes)
                     {
-                        <input class="size"  name="sizeValues" type="number" min="0" max="300" step="0.5" value="@size.SizeValue" />
+                        <input class="size" name="sizeValues" type="number" min="0" max="300" step="0.5" value="@size.SizeValue" />
                     }
                 }
-                <input class="size"  name="sizeValues" type="number" min="0" max="300" step="0.5" />
+                <input class="size" name="sizeValues" type="number" min="0" max="300" step="0.5" />
             </div>
             <div>
-                <label asp-for="IsDisplayed"></label>
-                <input asp-for="IsDisplayed" />
-                <span asp-validation-for="IsDisplayed"></span>
+                <br />
+                <div style="display:inline-block;">
+                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="IsDisplayed"></label>
+                </div>
+                <div style="display:inline-block;">
+                    <input asp-for="IsDisplayed" />
+                    <span asp-validation-for="IsDisplayed"></span>
+                </div>
+                <br />
             </div>
             <div>
-                <label asp-for="IsNovelty"></label>
-                <input asp-for="IsNovelty" />
-                <span asp-validation-for="IsNovelty"></span>
+                <div style="display:inline-block;">
+                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="IsNovelty"></label>
+                </div>
+                <div style="display:inline-block;">
+                    <input asp-for="IsNovelty" />
+                    <span asp-validation-for="IsNovelty"></span>
+                </div>
+                <br />
             </div>
             <div>
-                <label asp-for="MetaDescription"></label>
-                <input id="metaDescription" asp-for="MetaDescription" />
+                <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="MetaDescription"></label>
+                <input class="form-control" id="metaDescription" asp-for="MetaDescription" />
                 <span asp-validation-for="MetaDescription"></span>
+                <br />
             </div>
             <div>
-                <label asp-for="MetaKeywords"></label>
-                <input id="metaKeywords" asp-for="MetaKeywords" />
+                <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="MetaKeywords"></label>
+                <input class="form-control" id="metaKeywords" asp-for="MetaKeywords" />
                 <span asp-validation-for="MetaKeywords"></span>
+                <br />
             </div>
-            <input type="submit" value="Сохранить" />
+            <input class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" type="submit" value="Сохранить" />
         </form>
     </div>
 </div>
 
-<script>
+@*<script>
     window.onload = function () {
         var newCKEditor = CKEDITOR.replace('@Html.IdFor(x=>x.Description)');
         newCKEditor.updateElement();        
     }
-</script>
+</script>*@

@@ -1,27 +1,33 @@
 ﻿@model LoginViewModel
 <div class="form">
-    <p>Вход в личный кабинет</p>
+    <br />
+    <p style=" margin-left: auto; margin-right: auto; width: 50%" class="h2 pb-4">Вход в личный кабинет</p>
     <div>
         <form asp-area="" asp-controller="Account" asp-action="Login" method="post" asp-route-returnUrl="@ViewBag.returnUrl">
             <div asp-validation-summary="All"></div>
-            <div>
-                <label asp-for="UserName"></label>
-                <input asp-for="UserName" />
+            <div style=" margin-left: auto; margin-right: auto; width: 50%">                 
+                <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="UserName"></label>
+                <input class="form-control" asp-for="UserName" />
                 <span asp-validation-for="UserName"></span>
             </div>
-            <div>
-                <label asp-for="Password"></label>
-                <input asp-for="Password" />
+            <div style=" margin-left: auto; margin-right: auto; width: 50%">
+                <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Password"></label>
+                <input class="form-control" asp-for="Password" />
                 <span asp-validation-for="Password"></span>
             </div>
-            <div>
-                <label asp-for="RememberMe"></label>
-                <input asp-for="RememberMe" />
-                <span asp-validation-for="RememberMe"></span>
+            <div style=" margin-left: auto; margin-right: auto; width: 50%">
+                <div style="display:inline-block;">
+                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="RememberMe"></label>
+                </div>
+                <div style="display:inline-block;">
+                    <input asp-for="RememberMe" />
+                    <span asp-validation-for="RememberMe"></span>
+                </div>
             </div>
-            <div>
-                <input type="submit" value="Войти" />
-            </div>
-        </form>
+                <div style=" margin-left: auto; margin-right: auto; width: 50%">
+                    <input class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" type="submit" value="Войти" />
+                <br />
+                </div>
+</form>
     </div>
 </div>

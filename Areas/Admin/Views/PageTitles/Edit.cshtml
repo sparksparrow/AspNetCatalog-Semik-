@@ -5,7 +5,8 @@
 }
 
 <div class="form">
-    <h1>@pageTitle</h1>
+    <h1 class="h2 pb-4">@pageTitle</h1>
+    <br />
     <div>
         <form asp-area="Admin" asp-controller="PageTitles" asp-action="Edit" method="post" enctype="multipart/form-data">
             <input type="hidden" asp-for="Id" />
@@ -13,21 +14,24 @@
 
             <div asp-validation-summary="All"></div>
             <div>
-                <label asp-for="Title"></label>
-                <input asp-for="Title" />
+                <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Title"></label>
+                <input class="form-control" asp-for="Title" />
                 <span asp-validation-for="Title"></span>
+                <br />
             </div>
             <div>
-                <label asp-for="MetaDescription"></label>
-                <input asp-for="MetaDescription" />
+                <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="MetaDescription"></label>
+                <input class="form-control" asp-for="MetaDescription" />
                 <span asp-validation-for="MetaDescription"></span>
+                <br />
             </div>
             <div>
-                <label asp-for="MetaKeywords"></label>
-                <input asp-for="MetaKeywords" />
+                <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="MetaKeywords"></label>
+                <input class="form-control" asp-for="MetaKeywords" />
                 <span asp-validation-for="MetaKeywords"></span>
+                <br />
             </div>
-            <input type="submit" value="Сохранить" />
+            <input class="form-control" type="submit" value="Сохранить" />
         </form>
     </div>
 </div>

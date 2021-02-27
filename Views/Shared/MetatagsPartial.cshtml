@@ -1,13 +1,13 @@
 ﻿@{
     PageTitle pageTitle = ViewBag.PageTitle;
 }
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 @if (pageTitle != null)
 {
-<title>@pageTitle.Title</title>
+    <title>@pageTitle.Title</title>
 }
 else
 {
     <title>@Config.CompanyName</title>
 }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
