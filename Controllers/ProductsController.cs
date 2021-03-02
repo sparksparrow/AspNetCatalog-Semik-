@@ -1,5 +1,6 @@
 ﻿using GnomShop.Domain;
 using GnomShop.Models;
+using GnomShop.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,7 +18,22 @@ namespace GnomShop.Controllers
         {
             this.dataManager = dataManager;
         }
-        public async Task<IActionResult> Index(Guid id, string sortOrder, string currentFilter, string searchString, ushort minValue, ushort maxValue, double[] sizeValues = default, string currentSizeValues = default, ushort pageIndex = 0)
+        public async Task<IActionResult> Index(
+            Guid id, 
+            string sortOrder, 
+            string currentFilter, 
+            string searchString, 
+            ushort minValue, 
+            ushort maxValue, 
+            double[] sizeValues = default, 
+            string currentSizeValues = default, 
+            ProductItemType[] productItemTypeValues = default,
+            string currentproductItemTypeValues = default,
+            string[] colorValues = default,
+            string currentColorValues = default,
+            Gender[] genderValues = default,
+            string currentGenderValues = default,
+            ushort pageIndex = 0)
         {
             if (id != default)
             {
@@ -37,28 +53,13 @@ namespace GnomShop.Controllers
 
             ViewData["CurrentSort"] = sortOrder;            
 
-            Dictionary<double, bool> sizes = dataManager.Sizes.GetSizes().Select(p => p.SizeValue).Distinct().OrderBy(p => p).ToDictionary(k => k, v => false);
+            Dictionary<double, bool> sizes = dataManager.Sizes.GetSizes().Select(p => p.SizeValue).Distinct().OrderBy(p => p).ToDictionary(k => k, v => false);           
 
-            if (sizeValues.Any())
-            {
-                sizes = sizes.Select(s => sizeValues.Contains(s.Key) ? new KeyValuePair<double, bool>(s.Key, true) : s).ToDictionary(pair => pair.Key, pair => pair.Value);
-            }
-            else
-            {
-                if (currentSizeValues != default)
-                {
-                    List<double> listOfSizes = new List<double>();
-                    foreach(var size in currentSizeValues.Split(","))
-                    {
-                        double result = default;
-                        if(double.TryParse(size,out result))
-                        {
-                            listOfSizes.Add(result);
-                        }
-                    }
-                    sizes = sizes.Select(s => listOfSizes.Contains(s.Key) ? new KeyValuePair<double, bool>(s.Key, true) : s).ToDictionary(pair => pair.Key, pair => pair.Value);
-                }
-            }
+            Dictionary<ProductItemType, bool> productItemTypes = dataManager.ProductItems.GetProducts().Select(p => p.ProductItemType).Distinct().OrderBy(p => p).ToDictionary(k => k, v => false);
+
+            Dictionary<string, bool> colors = dataManager.ProductItems.GetProducts().Select(p => p.Color).Distinct().OrderBy(p => p).ToDictionary(k => k, v => false);
+
+            Dictionary<Gender, bool> genders = dataManager.ProductItems.GetProducts().Select(p => p.Gender).Distinct().OrderBy(p => p).ToDictionary(k => k, v => false);
 
             var products = dataManager.ProductItems.GetProducts().Select(p => p);
 
@@ -69,8 +70,24 @@ namespace GnomShop.Controllers
                     searchString, 
                     minValue, 
                     maxValue,
-                    sizes
-                    ),
+                    CollectionProcessor.GetSelectedProductItemTypeValues(
+                        productItemTypes,
+                        productItemTypeValues,
+                        currentproductItemTypeValues),
+                    CollectionProcessor.GetSelectedSizeValues(
+                        sizes, 
+                        sizeValues, 
+                        currentSizeValues),
+                    CollectionProcessor.GetSelectedColorValues(
+                        colors,
+                        colorValues,
+                        currentColorValues),
+                    CollectionProcessor.GetSelectedGenderValues(
+                        genders,
+                        genderValues,
+                        currentGenderValues
+                        )
+                    ),                
                 products.AsNoTracking(), 
                 pageIndex, 
                 sortOrder

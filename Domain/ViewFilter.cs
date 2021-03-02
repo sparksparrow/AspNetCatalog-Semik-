@@ -12,14 +12,22 @@ namespace GnomShop.Domain
         public string SearchString { get; private set; }
         public ushort MinValue { get; private set; }
         public ushort MaxValue { get; private set; }
+        public Dictionary<ProductItemType, bool> ProductItemType { get; private set; }
         public Dictionary<double,bool> SizeValues { get; private set; }
+        public Dictionary<string, bool> Colors { get; private set; }
+        public Dictionary<Gender, bool> Gender { get; private set; }
 
-        public ViewFilter(string searchString = default, ushort minValue = default, ushort maxValue = default, Dictionary<double, bool> sizeValues = default)
+
+
+        public ViewFilter(string searchString = default, ushort minValue = default, ushort maxValue = default, Dictionary<ProductItemType, bool> productItemTypes = default, Dictionary<double, bool> sizeValues = default, Dictionary<string, bool> colors = default , Dictionary<Gender, bool> gender = default)
         {
-            this.SearchString = searchString;
+            SearchString = searchString;
             MinValue = minValue;
             MaxValue = maxValue;
             SizeValues = sizeValues;
+            ProductItemType = productItemTypes;
+            Colors = colors;
+            Gender = gender;
         }
 
         protected IQueryable<T> FilterSearchString(IQueryable<T> source)
@@ -73,9 +81,45 @@ namespace GnomShop.Domain
             return source;
         }
 
+        protected IQueryable<T> FilterTypes(IQueryable<T> source)
+        {
+            IEnumerable<ProductItemType> selectedTypeValues = ProductItemType.Where(type => type.Value).ToDictionary(pair => pair.Key, pair => pair.Value).Keys;
+
+            if (selectedTypeValues.Any())
+            {    
+                source = source.Where(p=>selectedTypeValues.Contains(p.ProductItemType));
+            }
+            return source;
+        }
+
+        protected IQueryable<T> FilterColors(IQueryable<T> source)
+        {
+            IEnumerable<string> selectedColors = Colors.Where(color => color.Value).ToDictionary(pair => pair.Key, pair => pair.Value).Keys;
+
+            if (selectedColors.Any())
+            {
+                source = source.Where(p => selectedColors.Contains(p.Color));
+            }
+            return source;
+        }
+        protected IQueryable<T> FilterGedners(IQueryable<T> source)
+        {
+            IEnumerable<Gender> selectedGenders = Gender.Where(gender => gender.Value).ToDictionary(pair => pair.Key, pair => pair.Value).Keys;
+
+            if (selectedGenders.Any())
+            {
+                source = source.Where(p => selectedGenders.Contains(p.Gender));
+            }
+            return source;
+        }
+
+
         public IQueryable<T> Filter(IQueryable<T> source)
         {
+            source = FilterGedners(source);
+            source = FilterTypes(source);
             source = FilterSizes(source);
+            source = FilterColors(source);
             source = FilterPrices(source);
             source = FilterSearchString(source);
             return source;

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GnomShop.Migrations
 {
     [DbContext(typeof(CatalogDbContext))]
-    [Migration("20210205001247__initial")]
-    partial class _initial
+    [Migration("20210301141906__init")]
+    partial class _init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -106,6 +106,10 @@ namespace GnomShop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime2");
 
@@ -116,10 +120,10 @@ namespace GnomShop.Migrations
                     b.Property<int>("Discount")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsDisplayed")
+                    b.Property<bool?>("Gender")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsInStock")
+                    b.Property<bool>("IsDisplayed")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsNovelty")
@@ -146,6 +150,9 @@ namespace GnomShop.Migrations
                     b.Property<string>("Title")
                         .HasMaxLength(240)
                         .HasColumnType("nvarchar(240)");
+
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -201,7 +208,7 @@ namespace GnomShop.Migrations
                         new
                         {
                             Id = "96ba8f64-053a-4574-a0bb-b73ecc88c761",
-                            ConcurrencyStamp = "734fc36f-7481-4782-942f-61ec56112815",
+                            ConcurrencyStamp = "ea0517aa-2b3f-4089-92f3-af3d9835682f",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -300,13 +307,13 @@ namespace GnomShop.Migrations
                         {
                             Id = "4c6e757b-ecb2-40a8-94fe-a2d3ecca28ca",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3209c2fd-5fc0-46a9-9689-b73b3b7617af",
+                            ConcurrencyStamp = "22e0ea25-ce72-485f-ad24-d8afd7692ccd",
                             Email = "nikita_semik2000@mail.ru",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "nikita_semik2000@mail.ru",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMLDk9vuX+uj98bjcAPnzRvfHw37gfJttkgeQ+vkpXzoIbOdf0tyNcJ38/uzuNCyhA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKeeCSiFtWGGHDDbcN9yzY/vg5HMN4H5gQDTFkAtwa1/KCPcUaWrG5CAf65YoLLjbw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

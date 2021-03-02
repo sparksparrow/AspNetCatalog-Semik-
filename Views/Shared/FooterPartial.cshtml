@@ -21,20 +21,19 @@
             </div>
 
             <div class="col-md-4 pt-5">
-                <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
+                <h2 class="h2 text-light border-bottom pb-3 border-light">Товары для вас</h2>
                 <ul class="list-unstyled text-light footer-link-list">
-                    <li><a class="text-decoration-none" href="#">Luxury</a></li>
-                    <li><a class="text-decoration-none" href="#">Sport Wear</a></li>
-                    <li><a class="text-decoration-none" href="#">Men's Shoes</a></li>
-                    <li><a class="text-decoration-none" href="#">Women's Shoes</a></li>
-                    <li><a class="text-decoration-none" href="#">Popular Dress</a></li>
-                    <li><a class="text-decoration-none" href="#">Gym Accessories</a></li>
-                    <li><a class="text-decoration-none" href="#">Sport Shoes</a></li>
+                    <li><a class="text-decoration-none" asp-controller="Products" asp-action="Index" asp-route-currentGenderValues=@Gender.Male>Мужское</a></li>
+                    <li><a class="text-decoration-none" asp-controller="Products" asp-action="Index" asp-route-currentGenderValues=@Gender.Female>Женское</a></li>
+                    @foreach (PluralProductItemTypes type in Enum.GetValues(typeof(PluralProductItemTypes)))
+                    {
+                        <li><a class="text-decoration-none" asp-controller="Products" asp-action="Index" asp-route-currentproductItemTypeValues=@type>@Html.DisplayFor(x=>type)</a></li>
+                    }
                 </ul>
             </div>
 
             <div class="col-md-4 pt-5">
-                <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
+                <h2 class="h2 text-light border-bottom pb-3 border-light">Дополнительная информация</h2>
                 <ul class="list-unstyled text-light footer-link-list">
                     <li><a class="text-decoration-none" asp-area="" asp-controller="Home" asp-action="Index">Главная</a></li>
                     <li><a class="text-decoration-none" asp-area="" asp-controller="About" asp-action="Index">О нас</a></li>

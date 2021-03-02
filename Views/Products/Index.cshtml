@@ -1,6 +1,9 @@
 ﻿@model CatalogViewModel
 @{
     Dictionary<double, bool> sizes = Model.ViewFilterProductItems.SizeValues;
+    Dictionary<ProductItemType, bool> productItemTypes = Model.ViewFilterProductItems.ProductItemType;
+    Dictionary<string, bool> colors = Model.ViewFilterProductItems.Colors;
+    Dictionary<Gender, bool> genders = Model.ViewFilterProductItems.Gender;
     var paginateProductItems = Model.PaginateProductItems;
 
     Nullable<ushort> minValue = Model.ViewFilterProductItems.MinValue;
@@ -12,8 +15,14 @@
     var searchString = Model.ViewFilterProductItems.SearchString;
 
     double[] sizesArray = sizes.Where(s => s.Value).Select(s => s.Key).ToArray();
+    ProductItemType[] productItemTypesArray = productItemTypes.Where(s => s.Value).Select(s => s.Key).ToArray();
+    string[] colorArray = colors.Where(s => s.Value).Select(s => s.Key).ToArray();
+    Gender[] gendersArray = genders.Where(s => s.Value).Select(s => s.Key).ToArray();
 
     var currentSizeValues = string.Join(",", sizesArray);
+    var currentProductItemTypeValues = string.Join(",", productItemTypesArray);
+    var currentColorValues = string.Join(",", colorArray);
+    var currentGenderValues = string.Join(",", gendersArray);
 }
 
 <div class="container py-5">
@@ -34,16 +43,16 @@
                         </a>
                         <ul class="collapse show list-unstyled pl-3">
                             <li>
-                                <a class="text-decoration-none" asp-action="Index" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues>Сначала новые</a>
+                                <a class="text-decoration-none" asp-action="Index" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues asp-route-currentGenderValues=@currentGenderValues>Сначала новые</a>
                             </li>
                             <li>
-                                <a class="text-decoration-none" asp-action="Index" asp-route-sortOrder="price_asc" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues>Сначала дешевле</a>
+                                <a class="text-decoration-none" asp-action="Index" asp-route-sortOrder="price_asc" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues asp-route-currentGenderValues=@currentGenderValues>Сначала дешевле</a>
                             </li>
                             <li>
-                                <a class="text-decoration-none" asp-action="Index" asp-route-sortOrder="price_desc" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues>Сначала дороже</a>
+                                <a class="text-decoration-none" asp-action="Index" asp-route-sortOrder="price_desc" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues asp-route-currentGenderValues=@currentGenderValues>Сначала дороже</a>
                             </li>
                             <li>
-                                <a class="text-decoration-none" asp-action="Index" asp-route-sortOrder="discount_desc" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues>По размеру скидки</a>
+                                <a class="text-decoration-none" asp-action="Index" asp-route-sortOrder="discount_desc" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues asp-route-currentGenderValues=@currentGenderValues>По размеру скидки</a>
                             </li>
                         </ul>
                     </li>
@@ -88,12 +97,104 @@
                         </ul>
                     </li>
                     <li class="pb-3">
-                        <input  class="btn btn-success text-white mt-2" type="submit" value="Применить" />
-                        <a class="btn btn-success text-white mt-2" asp-action="Index">Сбросить фильтр</a>
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                            Пол
+                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                        </a>
+                        <ul id="collapseTwo" class="collapse list-unstyled pl-3">
+                            @if (genders != null && genders.Any())
+                            {
+                                @foreach (var gender in genders)
+                                {
+                                    @if (gender.Value)
+                                    {
+                                        <li>
+                                            <label>@Html.DisplayFor(x => gender.Key)</label>
+                                            <input class="GenderValues" name="GenderValues" type="checkbox" value="@gender.Key" checked="checked" />
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <label>@Html.DisplayFor(x => gender.Key)</label>
+                                            <input class="GenderValues" name="GenderValues" type="checkbox" value="@gender.Key" />
+                                        </li>
+                                    }
+                                }
+                            }
+                        </ul>
                     </li>
-                </ul>      
-        </form>
-    </div>
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                            Тип
+                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                        </a>
+                        <ul id="collapseTwo" class="collapse list-unstyled pl-3">
+                            @if (productItemTypes != null && productItemTypes.Any())
+                            {
+                                @foreach (var type in productItemTypes)
+                                {
+                                    @if (type.Value)
+                                    {
+                                        <li>
+                                            <label>@Html.DisplayFor(x=>type.Key)</label>
+                                            <input class="productItemTypeValues" name="productItemTypeValues" type="checkbox" value="@type.Key" checked="checked" />
+
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <label>@Html.DisplayFor(x => type.Key)</label>
+                                            <input class="productItemTypeValues" name="productItemTypeValues" type="checkbox" value="@type.Key" />
+
+                                        </li>
+                                    }
+                                }
+                            }
+                        </ul>
+                    </li>
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                            Цвет
+                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                        </a>
+                        <ul id="collapseTwo" class="collapse list-unstyled pl-3">
+                            @if (colors != null && colors.Any())
+                            {
+                                @foreach (var color in colors)
+                                {
+                                    @if (color.Value)
+                                    {
+                                        <li>
+                                            <label>@color.Key</label>
+                                            <input class="colorValues" name="colorValues" type="checkbox" value="@color.Key" checked="checked" />
+
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <label>@color.Key</label>
+                                            <input class="colorValues" name="colorValues" type="checkbox" value="@color.Key" />
+
+                                        </li>
+                                    }
+                                }
+                            }
+                        </ul>
+                    </li>
+                    <li class="pb-3">
+                        <input class="btn btn-success text-white mt-2" type="submit" value="Применить" />
+                    </li>
+                </ul>
+            </form>
+            <ul class="list-unstyled templatemo-accordion">
+                <li class="pb-3">
+                    <a class="btn btn-success text-white mt-2" asp-action="Index">Сбросить фильтр</a>
+                </li>
+                </ul>
+        </div>
 
         <div class="col-lg-9">            
             <div class="row">
@@ -122,6 +223,9 @@
                                     <a class="h3 text-decoration-none" asp-area="" asp-controller="Products" asp-action="Index" asp-route-id="@entity.Id">@entity.Name</a>
                                     <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                         <li>
+                                            <span>@Html.DisplayFor(x=>entity.Gender)</span>
+                                        </li>
+                                        <li>
                                             @if (entity.Sizes != null && entity.Sizes.Any())
                                             {
                                                 @for (int i = 0; i < entity.Sizes.Count; i++)
@@ -148,9 +252,9 @@
                                     }
                                     else
                                     {
-                                <p class="text-center mb-0">
-                                    <strike> @entity.Price&#8381; </strike>&nbsp;<font color="red">-@entity.Discount%</font>
-                                </p>
+                                        <p class="text-center mb-0">
+                                            <strike> @entity.Price&#8381; </strike>&nbsp;<font color="red">-@entity.Discount%</font>
+                                        </p>
                                         <p class="text-center mb-0">
                                             @entity.TotalPrice&#8381;
                                         </p>
@@ -159,126 +263,145 @@
                             </div>
                         </div>
                     }
+                    <div div="row">
+                        <ul class="pagination pagination-lg justify-content-center">
+                            @if (paginateProductItems.HasPreviousPage)
+                            {
+                                <li>
+
+                                    <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark"
+                                       asp-action="Index"
+                                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                       asp-route-pageIndex=@(paginateProductItems.PageIndex - 1)
+                                       asp-route-currentFilter=@searchString
+                                       asp-route-minValue=@minValue
+                                       asp-route-maxValue=@maxValue
+                                       asp-route-currentSizeValues=@currentSizeValues
+                                       asp-route-currentproductItemTypeValues=@currentProductItemTypeValues
+                                       asp-route-currentColorValues=@currentColorValues
+                                       asp-route-currentGenderValues=@currentGenderValues>
+                                        Предыдущая
+                                    </a>
+
+                                </li>
+                                <li class="page-item disabled">
+                                    <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">&#8195;&#8195;&#8195;&#8195;</a>
+                                </li>
+                            }
+                            @if (paginateProductItems.PageIndex != 0 && paginateProductItems.PageIndex != 1)
+                            {
+                                <li>
+                                    <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-action="Index"
+                                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                       asp-route-pageIndex=0
+                                       asp-route-currentFilter=@searchString
+                                       asp-route-minValue=@minValue
+                                       asp-route-maxValue=@maxValue
+                                       asp-route-currentSizeValues=@currentSizeValues
+                                       asp-route-currentproductItemTypeValues=@currentProductItemTypeValues
+                                       asp-route-currentColorValues=@currentColorValues
+                                       asp-route-currentGenderValues=@currentGenderValues>1</a>
+                                </li>
+                                if (paginateProductItems.PageIndex > 2)
+                                {
+                                    <li class="page-item disabled">
+                                        <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">.....</a>
+                                    </li>
+                                }
+                            }
+                            @if (paginateProductItems.PageIndex != 0)
+                            {
+                                <li>
+                                    <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-action="Index"
+                                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                       asp-route-pageIndex=@(paginateProductItems.PageIndex-1)
+                                       asp-route-currentFilter=@searchString
+                                       asp-route-minValue=@minValue
+                                       asp-route-maxValue=@maxValue
+                                       asp-route-currentSizeValues=@currentSizeValues
+                                       asp-route-currentproductItemTypeValues=@currentProductItemTypeValues
+                                       asp-route-currentColorValues=@currentColorValues
+                                       asp-route-currentGenderValues=@currentGenderValues>
+                                        @paginateProductItems.PageIndex
+                                    </a>
+                                </li>
+
+
+
+                            }
+                            <li class="page-item disabled">
+                                <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="#">@(paginateProductItems.PageIndex+1)</a>
+                            </li>
+                            @if (paginateProductItems.PageIndex != paginateProductItems.TotalPages - 1)
+                            {
+                                <li>
+                                    <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-action="Index"
+                                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                       asp-route-pageIndex=@(paginateProductItems.PageIndex+1)
+                                       asp-route-currentFilter=@searchString
+                                       asp-route-minValue=@minValue
+                                       asp-route-maxValue=@maxValue
+                                       asp-route-currentSizeValues=@currentSizeValues
+                                       asp-route-currentproductItemTypeValues=@currentProductItemTypeValues
+                                       asp-route-currentColorValues=@currentColorValues
+                                       asp-route-currentGenderValues=@currentGenderValues>@(paginateProductItems.PageIndex+2)
+                                    </a>
+                                </li>
+
+                            }
+                            @if (paginateProductItems.PageIndex != paginateProductItems.TotalPages - 1 && paginateProductItems.PageIndex != paginateProductItems.TotalPages - 2)
+                            {
+                                if (paginateProductItems.PageIndex < paginateProductItems.TotalPages - 3)
+                                {
+                                    <li class="page-item disabled">
+                                        <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">.....</a>
+                                    </li>
+                                }
+                                <li>
+                                    <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-action="Index"
+                                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                       asp-route-pageIndex=@(paginateProductItems.TotalPages - 1)
+                                       asp-route-currentFilter=@searchString
+                                       asp-route-minValue=@minValue
+                                       asp-route-maxValue=@maxValue
+                                       asp-route-currentSizeValues=@currentSizeValues
+                                       asp-route-currentproductItemTypeValues=@currentProductItemTypeValues
+                                       asp-route-currentColorValues=@currentColorValues
+                                       asp-route-currentGenderValues=@currentGenderValues>
+                                        @paginateProductItems.TotalPages
+                                    </a>
+                                </li>
+                            }
+                            @if (paginateProductItems.HasNextPage)
+                            {
+
+                                <li class="page-item disabled">
+                                    <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">&#8195;&#8195;&#8195;&#8195;</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark"
+                                       asp-action="Index"
+                                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                       asp-route-pageIndex=@(paginateProductItems.PageIndex + 1)
+                                       asp-route-currentFilter=@searchString
+                                       asp-route-minValue=@minValue
+                                       asp-route-maxValue=@maxValue
+                                       asp-route-currentSizeValues=@currentSizeValues
+                                       asp-route-currentproductItemTypeValues=@currentProductItemTypeValues
+                                       asp-route-currentColorValues=@currentColorValues
+                                       asp-route-currentGenderValues=@currentGenderValues>
+                                        Следующая
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
                 }
                 else
                 {
                     <h2>Ничего не найдено:(</h2>
                 }
-            </div>            
-                <div div="row">
-                    <ul class="pagination pagination-lg justify-content-center">
-                        @if (paginateProductItems.HasPreviousPage)
-                        {
-                            <li>
-
-                                <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark"
-                                   asp-action="Index"
-                                   asp-route-sortOrder="@ViewData["CurrentSort"]"
-                                   asp-route-pageIndex=@(paginateProductItems.PageIndex - 1)
-                                   asp-route-currentFilter=@searchString
-                                   asp-route-minValue=@minValue
-                                   asp-route-maxValue=@maxValue
-                                   asp-route-currentSizeValues=@currentSizeValues>
-                                    Предыдущая
-                                </a>
-
-                            </li>
-                            <li class="page-item disabled">
-                                <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">&#8195;&#8195;&#8195;&#8195;</a>
-                            </li>
-                        }
-                        @if (paginateProductItems.PageIndex != 0 && paginateProductItems.PageIndex != 1)
-                        {
-                            <li>
-                                <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-action="Index"
-                                   asp-route-sortOrder="@ViewData["CurrentSort"]"
-                                   asp-route-pageIndex=0
-                                   asp-route-currentFilter=@searchString
-                                   asp-route-minValue=@minValue
-                                   asp-route-maxValue=@maxValue
-                                   asp-route-currentSizeValues=@currentSizeValues>1</a>
-                            </li>
-                            if (paginateProductItems.PageIndex > 2)
-                            {
-                                <li class="page-item disabled">
-                                    <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">.....</a>
-                                </li>
-                            }
-                        }
-                        @if (paginateProductItems.PageIndex != 0)
-                        {
-                            <li>
-                                <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-action="Index"
-                                   asp-route-sortOrder="@ViewData["CurrentSort"]"
-                                   asp-route-pageIndex=@(paginateProductItems.PageIndex-1)
-                                   asp-route-currentFilter=@searchString
-                                   asp-route-minValue=@minValue
-                                   asp-route-maxValue=@maxValue
-                                   asp-route-currentSizeValues=@currentSizeValues>
-                                    @paginateProductItems.PageIndex
-                                </a>
-                            </li>
-
-
-
-                        }
-                        <li class="page-item disabled">
-                            <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="#">@(paginateProductItems.PageIndex+1)</a>
-                        </li>
-                        @if (paginateProductItems.PageIndex != paginateProductItems.TotalPages - 1)
-                        {
-                            <li>
-                                <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-action="Index"
-                                   asp-route-sortOrder="@ViewData["CurrentSort"]"
-                                   asp-route-pageIndex=@(paginateProductItems.PageIndex+1)
-                                   asp-route-currentFilter=@searchString
-                                   asp-route-minValue=@minValue
-                                   asp-route-maxValue=@maxValue
-                                   asp-route-currentSizeValues=@currentSizeValues>@(paginateProductItems.PageIndex+2)</a>
-                            </li>
-
-                        }
-                        @if (paginateProductItems.PageIndex != paginateProductItems.TotalPages - 1 && paginateProductItems.PageIndex != paginateProductItems.TotalPages - 2)
-                        {
-                            if (paginateProductItems.PageIndex < paginateProductItems.TotalPages-3)
-                            {
-                                <li class="page-item disabled">
-                                    <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">.....</a>
-                                </li>
-                            }
-                            <li>
-                                <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-action="Index"
-                                   asp-route-sortOrder="@ViewData["CurrentSort"]"
-                                   asp-route-pageIndex=@(paginateProductItems.TotalPages - 1)
-                                   asp-route-currentFilter=@searchString
-                                   asp-route-minValue=@minValue
-                                   asp-route-maxValue=@maxValue
-                                   asp-route-currentSizeValues=@currentSizeValues>
-                                    @paginateProductItems.TotalPages
-                                </a>
-                            </li>
-                        }
-                        @if (paginateProductItems.HasNextPage)
-                        {
-
-                            <li class="page-item disabled">
-                                <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">&#8195;&#8195;&#8195;&#8195;</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark"
-                                   asp-action="Index"
-                                   asp-route-sortOrder="@ViewData["CurrentSort"]"
-                                   asp-route-pageIndex=@(paginateProductItems.PageIndex + 1)
-                                   asp-route-currentFilter=@searchString
-                                   asp-route-minValue=@minValue
-                                   asp-route-maxValue=@maxValue
-                                   asp-route-currentSizeValues=@currentSizeValues>
-                                    Следующая
-                                </a>
-                            </li>
-                        }
-                    </ul>
-                </div>
+            </div> 
             </div>
         </div>
     </div>

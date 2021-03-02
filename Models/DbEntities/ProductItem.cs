@@ -4,14 +4,23 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GnomShop.Models
 {
+    public enum Gender
+    {
+        [Display(Name = "Мужское")]
+        Male,
+        [Display(Name = "Женское")]
+        Female
+    }
     public enum ProductItemType
     {
-        [Display(Name = "Костюм")]
-        Costume,
+        [Display(Name = "Комбинезон")]
+        Overalls,
         [Display(Name = "Платье")]
         Dress,
-        [Display(Name = "Юбка")]
-        Skirt
+        [Display(Name = "Рубашка")]
+        Shirt,
+        [Display(Name = "Костюм")]
+        Costume
     }
 
     public class ProductItem : EntityBase
@@ -22,7 +31,7 @@ namespace GnomShop.Models
             Price = 0;
             Discount = 0;
             TotalPrice = 0;
-            IsInStock = true;
+            Gender = Gender.Male;
             Sizes = new List<Size>();
             Images = new List<Image>();
             IsDisplayed = false;
@@ -37,6 +46,10 @@ namespace GnomShop.Models
         [Display(Name = "Название товара")]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "Отсутствует цвет товара")]
+        [Display(Name = "Цвет товара")]
+        public string Color { get; set; }
+
         [Required(ErrorMessage = "Отсутствует цена товара")]
         [Display(Name = "Цена")]
         public double Price { get; set; }
@@ -47,11 +60,11 @@ namespace GnomShop.Models
 
         [Range(0, 1000000, ErrorMessage = "Недопустимая цена")]
         [Display(Name = "Цена со скидкой")]
-        public double TotalPrice { get; set; }        
+        public double TotalPrice { get; set; }
 
-        [Required(ErrorMessage = "Отсутствует статус о наличии товара")]
-        [Display(Name = "В наличии")]
-        public bool IsInStock { get; set; } 
+        [Required(ErrorMessage = "Не указан пол")]
+        [Display(Name = "Пол")]
+        public Gender Gender { get; set; }
 
         [Display(Name = "Размеры")]
         public virtual ICollection<Size> Sizes { get; set; } 

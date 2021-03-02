@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GnomShop.Migrations
 {
-    public partial class _initial : Migration
+    public partial class _init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -68,9 +68,11 @@ namespace GnomShop.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductItemType = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
                     Discount = table.Column<int>(type: "int", nullable: false),
-                    IsInStock = table.Column<bool>(type: "bit", nullable: false),
+                    TotalPrice = table.Column<double>(type: "float", nullable: false),
+                    Gender = table.Column<bool>(type: "bit", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", maxLength: 5000, nullable: true),
                     IsDisplayed = table.Column<bool>(type: "bit", nullable: false),
                     IsNovelty = table.Column<bool>(type: "bit", nullable: false),
@@ -232,12 +234,12 @@ namespace GnomShop.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "96ba8f64-053a-4574-a0bb-b73ecc88c761", "734fc36f-7481-4782-942f-61ec56112815", "admin", "ADMIN" });
+                values: new object[] { "96ba8f64-053a-4574-a0bb-b73ecc88c761", "ea0517aa-2b3f-4089-92f3-af3d9835682f", "admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "4c6e757b-ecb2-40a8-94fe-a2d3ecca28ca", 0, "3209c2fd-5fc0-46a9-9689-b73b3b7617af", "nikita_semik2000@mail.ru", true, false, null, "nikita_semik2000@mail.ru", "ADMIN", "AQAAAAEAACcQAAAAEMLDk9vuX+uj98bjcAPnzRvfHw37gfJttkgeQ+vkpXzoIbOdf0tyNcJ38/uzuNCyhA==", null, false, "", false, "admin" });
+                values: new object[] { "4c6e757b-ecb2-40a8-94fe-a2d3ecca28ca", 0, "22e0ea25-ce72-485f-ad24-d8afd7692ccd", "nikita_semik2000@mail.ru", true, false, null, "nikita_semik2000@mail.ru", "ADMIN", "AQAAAAEAACcQAAAAEKeeCSiFtWGGHDDbcN9yzY/vg5HMN4H5gQDTFkAtwa1/KCPcUaWrG5CAf65YoLLjbw==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "PageTitles",

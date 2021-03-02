@@ -1,4 +1,4 @@
-$(document).ready(function () {
+п»ї$(document).ready(function () {
 
     $('#nameItem').change(function () {
         $('#titleItem').val($(this).val());
@@ -43,9 +43,8 @@ function handleFiles(files) {
 
         let img = document.createElement("img");
         img.classList.add("image");
-        img.classList.add("card-img");
-        img.classList.add("rounded-0");
-        img.classList.add("img-fluid");
+        img.classList.add("col-md-4");
+        img.classList.add("card");
 
         img.file = file;
         preview.appendChild(img);
@@ -57,11 +56,11 @@ function handleFiles(files) {
 }
 
 function synchSEOWords() {
-    let selectedWords = ['Костюм', 'Платье', 'Юбка'];
+    let options = document.getElementById("productItemType").options;    
 
-    for (var i = 0; i < selectedWords.length; i++) {
-        $('#nameItem').val($('#nameItem').val().replace(selectedWords[i], ''));
-        $('#metaKeywords').val($('#metaKeywords').val().replace(selectedWords[i] + ", ", ''));
+    for (let i = 0; i < options.length; i++) {
+        $('#nameItem').val($('#nameItem').val().replace(options[i].text, ''));
+        $('#metaKeywords').val($('#metaKeywords').val().replace(options[i].text + ", ", ''));
     }
     let tempName = $('#nameItem').val();
 

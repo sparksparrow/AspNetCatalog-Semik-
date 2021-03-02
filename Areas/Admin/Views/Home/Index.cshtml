@@ -4,7 +4,7 @@
     <div >
         <br />
         <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
-            <input class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" type="submit" value="Выйти" />
+            <input style="width: 100%;" class=" btn btn-success" type="submit" value="Выйти" />
         </form>
     </div>
     <div>
@@ -16,6 +16,7 @@
         <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-area="Admin" asp-controller="PageTitles" asp-action="Edit" asp-route-codeWord="PageAbout">О нас</a>
     </div>
     <div>
+        <br />
         <h2 class="h2 pb-4">Наши продукты</h2>
         <div>
             <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-area="Admin" asp-controller="Products" asp-action="Edit" asp-route-id="">Добавить продукт</a>
@@ -26,7 +27,7 @@
             <div>
                 @foreach (ProductItem entity in Model)
                 {
-                    <div>
+                    <div style=" height: 4em; display: flex; align-items: center">
                         <a style="display:inline-block;" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-area="Admin" asp-controller="Products" asp-action="Edit" asp-route-id="@entity.Id">Редактировать</a>
                         |
                         <form style="display:inline-block;" id="form-@entity.Id" asp-area="Admin" asp-controller="Products" asp-action="Delete" method="post">
@@ -34,7 +35,7 @@
                             <a style="display:inline-block;" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#" onclick="document.getElementById('form-@entity.Id').submit();">Удалить</a>
                         </form>
                         |
-                        <a style="display:inline-block;" class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-area="" asp-controller="Products" asp-action="Index" asp-route-id="@entity.Id">
+                        <a style="display:inline-block; width: 100%" class=" btn btn-success" asp-area="" asp-controller="Products" asp-action="Index" asp-route-id="@entity.Id">
                             @entity.Name - @entity.TotalPrice &#8381
                         </a>
                     </div>
