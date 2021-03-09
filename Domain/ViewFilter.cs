@@ -15,11 +15,11 @@ namespace GnomShop.Domain
         public Dictionary<ProductItemType, bool> ProductItemType { get; private set; }
         public Dictionary<double,bool> SizeValues { get; private set; }
         public Dictionary<string, bool> Colors { get; private set; }
-        public Dictionary<Gender, bool> Gender { get; private set; }
+        public Nullable<Gender> Gender { get; private set; }
 
 
 
-        public ViewFilter(string searchString = default, ushort minValue = default, ushort maxValue = default, Dictionary<ProductItemType, bool> productItemTypes = default, Dictionary<double, bool> sizeValues = default, Dictionary<string, bool> colors = default , Dictionary<Gender, bool> gender = default)
+        public ViewFilter(string searchString = default, ushort minValue = default, ushort maxValue = default, Dictionary<ProductItemType, bool> productItemTypes = default, Dictionary<double, bool> sizeValues = default, Dictionary<string, bool> colors = default , Nullable<Gender> gender = default)
         {
             SearchString = searchString;
             MinValue = minValue;
@@ -104,11 +104,9 @@ namespace GnomShop.Domain
         }
         protected IQueryable<T> FilterGedners(IQueryable<T> source)
         {
-            IEnumerable<Gender> selectedGenders = Gender.Where(gender => gender.Value).ToDictionary(pair => pair.Key, pair => pair.Value).Keys;
-
-            if (selectedGenders.Any())
+            if (Gender != default)
             {
-                source = source.Where(p => selectedGenders.Contains(p.Gender));
+                source = source.Where(p => p.Gender == Gender);
             }
             return source;
         }

@@ -28,13 +28,20 @@ using GnomShop.Models;
 #nullable disable
 #nullable restore
 #line 3 "D:\C++ projects\AspNetCatalog-Semik-\Views\_ViewImports.cshtml"
+using GnomShop.Models.DbEntities;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\C++ projects\AspNetCatalog-Semik-\Views\_ViewImports.cshtml"
 using GnomShop.Services;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e4d52545d08988c0e5d961fba2533ebfa93a41f6", @"/Views/Shared/Modal.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"30c8352211aafabe98317c98cea2a42a56b916e2", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"569de12bf148dc5bfc624aaeb8d69c062d445b80", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Modal : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Index", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -71,7 +78,7 @@ using GnomShop.Services;
             <button type=""button"" class=""btn-close"" data-bs-dismiss=""modal"" aria-label=""Close""></button>
         </div>
        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e4d52545d08988c0e5d961fba2533ebfa93a41f64706", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e4d52545d08988c0e5d961fba2533ebfa93a41f64884", async() => {
                 WriteLiteral(@"
            <div class=""input-group mb-2"">
                <input type=""text"" class=""form-control"" id=""inputModalSearch"" name=""searchString"" placeholder=""Поиск ..."" />               

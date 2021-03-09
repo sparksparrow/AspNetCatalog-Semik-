@@ -1,5 +1,6 @@
 ﻿using GnomShop.Domain;
 using GnomShop.Models;
+using GnomShop.Models.DbEntities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -21,10 +22,14 @@ namespace GnomShop.Controllers
             this.dataManager = dataManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             ViewBag.PageTitle = dataManager.Pages.GetPageTitleByCodeWord("PageIndex");
-            return View();
+            return View(new IndexViewModel(
+                dataManager.MainSliderContent.GetMainSliderContents(),
+                await dataManager.CategoriesOfTheMonth.GetCategoriesOfTheMonthAsync(),
+                await dataManager.DisplayedProducts.GetDisplayedProductsAsync()
+                ));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

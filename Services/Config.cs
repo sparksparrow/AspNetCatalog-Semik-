@@ -8,5 +8,6 @@
         public static string CompanyPhoneShort { get; set; }
         public static string CompanyEmail { get; set; }
         public static long FileSizeLimit { get; set; }
+        public static string[] PermittedExtensions { get; set; }
     }
 }

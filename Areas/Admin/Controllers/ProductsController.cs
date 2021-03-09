@@ -12,8 +12,7 @@ namespace GnomShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class ProductsController : Controller
-    {
-        private readonly string[] permittedExtensions = { ".png", ".jpg", ".jpeg" };
+    {        
         private readonly DataManager dataManager;
 
         public string GetImagesDirectory { get; private set; }
@@ -53,7 +52,7 @@ namespace GnomShop.Areas.Admin.Controllers
                     {
                         var ext = Path.GetExtension(img.FileName).ToLowerInvariant();
 
-                        if (img.Length > Config.FileSizeLimit || string.IsNullOrEmpty(ext) || !permittedExtensions.Contains(ext))
+                        if (img.Length > Config.FileSizeLimit || string.IsNullOrEmpty(ext) || !Config.PermittedExtensions.Contains(ext))
                             continue;
 
                         model.Images.Add(new Image(img.FileName));  

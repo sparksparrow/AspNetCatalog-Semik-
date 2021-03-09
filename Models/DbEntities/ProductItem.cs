@@ -34,8 +34,6 @@ namespace GnomShop.Models
             Gender = Gender.Male;
             Sizes = new List<Size>();
             Images = new List<Image>();
-            IsDisplayed = false;
-            IsNovelty = false;
         }
 
         [Required(ErrorMessage = "Отсутствует тип товара")]
@@ -75,14 +73,6 @@ namespace GnomShop.Models
                 
         [Display(Name = "Картинки")]
         public virtual ICollection<Image> Images { get; set; } 
-
-        [Required(ErrorMessage = "Отсутствует статус оторбажение на главной страницы товара")]
-        [Display(Name = "Отображается на главной")]
-        public bool IsDisplayed { get; set; }
-
-        [Required(ErrorMessage = "Отсутствует статус новинки товара")]
-        [Display(Name = "Новинка")]
-        public bool IsNovelty { get; set; }
 
         [DataType(DataType.DateTime)]
         [Display(Name = "Дата")]

@@ -3,7 +3,6 @@
     Dictionary<double, bool> sizes = Model.ViewFilterProductItems.SizeValues;
     Dictionary<ProductItemType, bool> productItemTypes = Model.ViewFilterProductItems.ProductItemType;
     Dictionary<string, bool> colors = Model.ViewFilterProductItems.Colors;
-    Dictionary<Gender, bool> genders = Model.ViewFilterProductItems.Gender;
     var paginateProductItems = Model.PaginateProductItems;
 
     Nullable<ushort> minValue = Model.ViewFilterProductItems.MinValue;
@@ -17,12 +16,11 @@
     double[] sizesArray = sizes.Where(s => s.Value).Select(s => s.Key).ToArray();
     ProductItemType[] productItemTypesArray = productItemTypes.Where(s => s.Value).Select(s => s.Key).ToArray();
     string[] colorArray = colors.Where(s => s.Value).Select(s => s.Key).ToArray();
-    Gender[] gendersArray = genders.Where(s => s.Value).Select(s => s.Key).ToArray();
 
     var currentSizeValues = string.Join(",", sizesArray);
     var currentProductItemTypeValues = string.Join(",", productItemTypesArray);
     var currentColorValues = string.Join(",", colorArray);
-    var currentGenderValues = string.Join(",", gendersArray);
+    Nullable<Gender> currentGenderValues = ViewData["CurrentGenderValues"] as Nullable<Gender>;
 }
 
 <div class="container py-5">
@@ -63,6 +61,7 @@
                         </a>
                         <ul id="collapseTwo" class="collapse list-unstyled pl-3">
                             <li><input type="number" class="form-control" id="minValue" name="minValue" value=@minValue placeholder="0" /></li>
+                            <li><p></p></li>
                             <li><input type="number" class="form-control" id="maxValue" name="maxValue" value=@maxValue placeholder="@(Model.MaxPrice)" /></li>
                         </ul>
                     </li>
@@ -98,34 +97,6 @@
                     </li>
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                            Пол
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
-                        </a>
-                        <ul id="collapseTwo" class="collapse list-unstyled pl-3">
-                            @if (genders != null && genders.Any())
-                            {
-                                @foreach (var gender in genders)
-                                {
-                                    @if (gender.Value)
-                                    {
-                                        <li>
-                                            <label>@Html.DisplayFor(x => gender.Key)</label>
-                                            <input class="GenderValues" name="GenderValues" type="checkbox" value="@gender.Key" checked="checked" />
-                                        </li>
-                                    }
-                                    else
-                                    {
-                                        <li>
-                                            <label>@Html.DisplayFor(x => gender.Key)</label>
-                                            <input class="GenderValues" name="GenderValues" type="checkbox" value="@gender.Key" />
-                                        </li>
-                                    }
-                                }
-                            }
-                        </ul>
-                    </li>
-                    <li class="pb-3">
-                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
                             Тип
                             <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
@@ -137,7 +108,7 @@
                                     @if (type.Value)
                                     {
                                         <li>
-                                            <label>@Html.DisplayFor(x=>type.Key)</label>
+                                            <label>@Html.DisplayFor(x => type.Key)</label>
                                             <input class="productItemTypeValues" name="productItemTypeValues" type="checkbox" value="@type.Key" checked="checked" />
 
                                         </li>
@@ -189,21 +160,31 @@
                     </li>
                 </ul>
             </form>
-            <ul class="list-unstyled templatemo-accordion">
-                <li class="pb-3">
-                    <a class="btn btn-success text-white mt-2" asp-action="Index">Сбросить фильтр</a>
-                </li>
-                </ul>
+            <a class="btn btn-success text-white mt-2" asp-action="Index" >Сбросить фильтр</a>
         </div>
-
-        <div class="col-lg-9">            
+        <div class="col-lg-9">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-inline shop-top-menu pb-3 pt-1">
+                        <li class="list-inline-item">
+                            <a class="h3 text-dark text-decoration-none mr-3" asp-action="Index" asp-route-sortOrder="" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues asp-route-genderValues="">Всё</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="h3 text-dark text-decoration-none mr-3" asp-action="Index" asp-route-sortOrder="" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues asp-route-genderValues=@Gender.Male>Для мужчик</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="h3 text-dark text-decoration-none mr-3" asp-action="Index" asp-route-sortOrder="" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues asp-route-genderValues=@Gender.Female>Для женщин</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <div class="row">
                 @if (paginateProductItems != null && paginateProductItems.Any())
                 {
                     @foreach (ProductItem entity in paginateProductItems)
                     {
                         <div class="col-md-4">
-                            <div class="card mb-4 product-wap rounded-0">
+                            <div style="height: 95%" class="card mb-4 product-wap rounded-0">
                                 <div class="card rounded-0">
                                     @if (entity.Images.FirstOrDefault() != default)
                                     {
@@ -222,9 +203,6 @@
                                 <div class="card-body">
                                     <a class="h3 text-decoration-none" asp-area="" asp-controller="Products" asp-action="Index" asp-route-id="@entity.Id">@entity.Name</a>
                                     <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                        <li>
-                                            <span>@Html.DisplayFor(x=>entity.Gender)</span>
-                                        </li>
                                         <li>
                                             @if (entity.Sizes != null && entity.Sizes.Any())
                                             {
@@ -344,7 +322,8 @@
                                        asp-route-currentSizeValues=@currentSizeValues
                                        asp-route-currentproductItemTypeValues=@currentProductItemTypeValues
                                        asp-route-currentColorValues=@currentColorValues
-                                       asp-route-currentGenderValues=@currentGenderValues>@(paginateProductItems.PageIndex+2)
+                                       asp-route-currentGenderValues=@currentGenderValues>
+                                        @(paginateProductItems.PageIndex+2)
                                     </a>
                                 </li>
 
@@ -401,8 +380,8 @@
                 {
                     <h2>Ничего не найдено:(</h2>
                 }
-            </div> 
             </div>
         </div>
+    </div>
     </div>
 

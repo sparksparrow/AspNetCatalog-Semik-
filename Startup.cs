@@ -31,6 +31,9 @@ namespace GnomShop
             services.AddTransient<IPageTitleRepository, EFPageTitleRepository>();
             services.AddTransient<IProductItemRepository, EFProductItemRepository>();
             services.AddTransient<ISizeRepository, EFSizeRepository>();
+            services.AddTransient<IMainSliderContent, EFMainSliderContent>();
+            services.AddTransient<ICategoriesOfTheMonth, EFCategoriesOfTheMonth>();
+            services.AddTransient<IDisplayedProducts, EFDisplayedProducts>();
             services.AddTransient<DataManager>();
 
             //Подключем контекст БД

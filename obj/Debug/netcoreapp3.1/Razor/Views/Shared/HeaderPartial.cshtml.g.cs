@@ -28,13 +28,20 @@ using GnomShop.Models;
 #nullable disable
 #nullable restore
 #line 3 "D:\C++ projects\AspNetCatalog-Semik-\Views\_ViewImports.cshtml"
+using GnomShop.Models.DbEntities;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\C++ projects\AspNetCatalog-Semik-\Views\_ViewImports.cshtml"
 using GnomShop.Services;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7e837fa86ebe8f9070ac1cc2cbe7af462752819a", @"/Views/Shared/HeaderPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"30c8352211aafabe98317c98cea2a42a56b916e2", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"569de12bf148dc5bfc624aaeb8d69c062d445b80", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_HeaderPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("navbar-brand text-success logo h1 align-self-center"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -71,7 +78,7 @@ using GnomShop.Services;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("<nav class=\"navbar navbar-expand-lg navbar-light shadow\">\r\n    <div class=\"container d-flex justify-content-between align-items-center\">\r\n\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7e837fa86ebe8f9070ac1cc2cbe7af462752819a6229", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7e837fa86ebe8f9070ac1cc2cbe7af462752819a6407", async() => {
                 WriteLiteral("\r\n            ");
 #nullable restore
 #line 5 "D:\C++ projects\AspNetCatalog-Semik-\Views\Shared\HeaderPartial.cshtml"
@@ -110,7 +117,7 @@ using GnomShop.Services;
                 <ul class=""nav navbar-nav d-flex justify-content-between mx-lg-auto"">
                     <li class=""nav-item"">
                         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7e837fa86ebe8f9070ac1cc2cbe7af462752819a8769", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7e837fa86ebe8f9070ac1cc2cbe7af462752819a8947", async() => {
                 WriteLiteral("Главная");
             }
             );
@@ -131,7 +138,7 @@ using GnomShop.Services;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    </li>\r\n                    <li class=\"nav-item\">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7e837fa86ebe8f9070ac1cc2cbe7af462752819a10514", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7e837fa86ebe8f9070ac1cc2cbe7af462752819a10692", async() => {
                 WriteLiteral("Каталог");
             }
             );
@@ -158,7 +165,7 @@ using GnomShop.Services;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    </li>\r\n                    <li class=\"nav-item\">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7e837fa86ebe8f9070ac1cc2cbe7af462752819a12770", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7e837fa86ebe8f9070ac1cc2cbe7af462752819a12948", async() => {
                 WriteLiteral("О нас");
             }
             );
@@ -179,7 +186,7 @@ using GnomShop.Services;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    </li>\r\n                    <li class=\"nav-item\">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7e837fa86ebe8f9070ac1cc2cbe7af462752819a14514", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7e837fa86ebe8f9070ac1cc2cbe7af462752819a14692", async() => {
                 WriteLiteral("Контакты");
             }
             );

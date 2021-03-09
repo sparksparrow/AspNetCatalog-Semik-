@@ -31,13 +31,15 @@ namespace GnomShop.Controllers
             string currentproductItemTypeValues = default,
             string[] colorValues = default,
             string currentColorValues = default,
-            Gender[] genderValues = default,
-            string currentGenderValues = default,
+            Nullable<Gender> genderValues = default,
+            Nullable<Gender> currentGenderValues = default,
             ushort pageIndex = 0)
         {
             if (id != default)
             {
-                return View("Show", dataManager.ProductItems.GetProductById(id));
+                ProductItem productItem = dataManager.ProductItems.GetProductById(id);
+                IQueryable<ProductItem> productItems = dataManager.ProductItems.GetProducts();
+                return View("Show", await ShowViewModel.CreateAsync(productItem, productItems.AsNoTracking()));
             }
 
             ViewBag.PageTitle = dataManager.Pages.GetPageTitleByCodeWord("PageCatalog");
@@ -51,15 +53,19 @@ namespace GnomShop.Controllers
                 searchString = currentFilter;
             }
 
-            ViewData["CurrentSort"] = sortOrder;            
+            ViewData["CurrentSort"] = sortOrder;  
+            
+            if(genderValues != default)
+            {
+                currentGenderValues = genderValues;
+            }
+            ViewData["CurrentGenderValues"] = currentGenderValues;
 
             Dictionary<double, bool> sizes = dataManager.Sizes.GetSizes().Select(p => p.SizeValue).Distinct().OrderBy(p => p).ToDictionary(k => k, v => false);           
 
             Dictionary<ProductItemType, bool> productItemTypes = dataManager.ProductItems.GetProducts().Select(p => p.ProductItemType).Distinct().OrderBy(p => p).ToDictionary(k => k, v => false);
 
             Dictionary<string, bool> colors = dataManager.ProductItems.GetProducts().Select(p => p.Color).Distinct().OrderBy(p => p).ToDictionary(k => k, v => false);
-
-            Dictionary<Gender, bool> genders = dataManager.ProductItems.GetProducts().Select(p => p.Gender).Distinct().OrderBy(p => p).ToDictionary(k => k, v => false);
 
             var products = dataManager.ProductItems.GetProducts().Select(p => p);
 
@@ -82,11 +88,7 @@ namespace GnomShop.Controllers
                         colors,
                         colorValues,
                         currentColorValues),
-                    CollectionProcessor.GetSelectedGenderValues(
-                        genders,
-                        genderValues,
-                        currentGenderValues
-                        )
+                    currentGenderValues                    
                     ),                
                 products.AsNoTracking(), 
                 pageIndex, 

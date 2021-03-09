@@ -28,13 +28,20 @@ using GnomShop.Models;
 #nullable disable
 #nullable restore
 #line 3 "D:\C++ projects\AspNetCatalog-Semik-\Views\_ViewImports.cshtml"
+using GnomShop.Models.DbEntities;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\C++ projects\AspNetCatalog-Semik-\Views\_ViewImports.cshtml"
 using GnomShop.Services;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"01d11e067956a22e161b45cf2d21065f979a41ac", @"/Views/Shared/TopNav.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"30c8352211aafabe98317c98cea2a42a56b916e2", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"569de12bf148dc5bfc624aaeb8d69c062d445b80", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_TopNav : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using GnomShop.Models;
 using GnomShop.Services;
 using Microsoft.EntityFrameworkCore;
+using GnomShop.Models.DbEntities;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Newtonsoft.Json;
 
 namespace GnomShop.Domain
 {
@@ -14,7 +18,11 @@ namespace GnomShop.Domain
         public DbSet<Image> Images { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<PageTitle> PageTitles { get; set; }
-        public DbSet<ProductItem> ProductItems { get; set; }        
+        public DbSet<ProductItem> ProductItems { get; set; }
+        public DbSet<MainSliderContent> MainSliderContents { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<CategoriesOfTheMonth> CategoriesOfTheMonths { get; set; }
+        public DbSet<DisplayedProducts> DisplayedProducts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -72,6 +80,69 @@ namespace GnomShop.Domain
                 CodeWord = "PageAbout",
                 Title = "О нас"
             });
+
+            builder.Entity<MainSliderContent>().HasData(new MainSliderContent
+            {
+                Id = new Guid("533effa6-5734-4a7b-a0df-bfe7cd1f70ec"),
+                Title = "Все по честному",
+                Description = "Покупаем и продаем по справедливым ценам."
+            });
+
+            builder.Entity<MainSliderContent>().HasData(new MainSliderContent
+            {
+                Id = new Guid("22526841-1fbd-4cf0-a47d-3633b34b8203"),
+                Title = "Красиво - не значит дрого",
+                Description = "Мы находим и придумываем самые оригинальные модели."
+            });
+
+            builder.Entity<MainSliderContent>().HasData(new MainSliderContent
+            {
+                Id = new Guid("2db8e5d3-f584-4cc3-b7ff-29a8f2c1e5fd"),
+                Title = "Всегда на связи",
+                Description = "Наши контакты вы можете найти на сайте"
+            });
+
+            builder.Entity<Category>().HasData(new Category
+            {
+                Id = new Guid("ad7dc04e-c931-4cb3-ae77-ee424e1bdfa4"),
+                ProductItemType = default,
+                CategoriesOfTheMonthId = new Guid("c47769a0-9fa9-49ed-b498-5ccc2fb0fad2")
+            });
+
+            builder.Entity<Category>().HasData(new Category
+            {
+                Id = new Guid("a6289bfa-f30e-436b-b8e7-3037d2324a95"),
+                ProductItemType = default,
+                CategoriesOfTheMonthId = new Guid("c47769a0-9fa9-49ed-b498-5ccc2fb0fad2")
+            });
+
+            builder.Entity<Category>().HasData(new Category
+            {
+                Id = new Guid("ff210f50-7193-4f8e-8189-0521fdad28d2"),
+                ProductItemType = default,
+                CategoriesOfTheMonthId = new Guid("c47769a0-9fa9-49ed-b498-5ccc2fb0fad2")
+            });
+
+            builder.Entity<CategoriesOfTheMonth>().HasData(new CategoriesOfTheMonth
+            {
+                Id = new Guid("c47769a0-9fa9-49ed-b498-5ccc2fb0fad2"),
+                Title = "Категории месяца",
+                Description = "Популярно на данный момент."
+            }) ;
+
+            builder.Entity<DisplayedProducts>().HasData(new DisplayedProducts
+            {
+                Id = new Guid("75870a12-4373-430b-ba0a-896f12ededa5"),
+                Title = "Лучшие продукты",
+                Description = "Здесь мы выбираем самые оригинальные модели"
+            });
+        }
+
+        public void Configure(EntityTypeBuilder<DisplayedProducts> builder)
+        {
+            builder.Property(d => d.Products).HasConversion(
+                v => JsonConvert.SerializeObject(v, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }),
+                v => JsonConvert.DeserializeObject<IList<ProductItem>>(v, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
         }
 
     }

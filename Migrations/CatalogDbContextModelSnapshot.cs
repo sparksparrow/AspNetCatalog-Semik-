@@ -19,6 +19,164 @@ namespace GnomShop.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.2");
 
+            modelBuilder.Entity("GnomShop.Models.DbEntities.CategoriesOfTheMonth", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CategoriesOfTheMonths");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("c47769a0-9fa9-49ed-b498-5ccc2fb0fad2"),
+                            Description = "Популярно на данный момент.",
+                            Title = "Категории месяца"
+                        });
+                });
+
+            modelBuilder.Entity("GnomShop.Models.DbEntities.Category", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Alt")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<Guid>("CategoriesOfTheMonthId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Extension")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("ProductItemType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoriesOfTheMonthId");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("ad7dc04e-c931-4cb3-ae77-ee424e1bdfa4"),
+                            CategoriesOfTheMonthId = new Guid("c47769a0-9fa9-49ed-b498-5ccc2fb0fad2"),
+                            ProductItemType = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("a6289bfa-f30e-436b-b8e7-3037d2324a95"),
+                            CategoriesOfTheMonthId = new Guid("c47769a0-9fa9-49ed-b498-5ccc2fb0fad2"),
+                            ProductItemType = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("ff210f50-7193-4f8e-8189-0521fdad28d2"),
+                            CategoriesOfTheMonthId = new Guid("c47769a0-9fa9-49ed-b498-5ccc2fb0fad2"),
+                            ProductItemType = 0
+                        });
+                });
+
+            modelBuilder.Entity("GnomShop.Models.DbEntities.DisplayedProducts", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DisplayedProducts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("75870a12-4373-430b-ba0a-896f12ededa5"),
+                            Description = "Здесь мы выбираем самые оригинальные модели",
+                            Title = "Лучшие продукты"
+                        });
+                });
+
+            modelBuilder.Entity("GnomShop.Models.DbEntities.MainSliderContent", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Alt")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Extension")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("SubTitle")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MainSliderContents");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("533effa6-5734-4a7b-a0df-bfe7cd1f70ec"),
+                            Description = "Покупаем и продаем по справедливым ценам.",
+                            Title = "Все по честному"
+                        },
+                        new
+                        {
+                            Id = new Guid("22526841-1fbd-4cf0-a47d-3633b34b8203"),
+                            Description = "Мы находим и придумываем самые оригинальные модели.",
+                            Title = "Красиво - не значит дрого"
+                        },
+                        new
+                        {
+                            Id = new Guid("2db8e5d3-f584-4cc3-b7ff-29a8f2c1e5fd"),
+                            Description = "Наши контакты вы можете найти на сайте",
+                            Title = "Всегда на связи"
+                        });
+                });
+
             modelBuilder.Entity("GnomShop.Models.Image", b =>
                 {
                     b.Property<Guid>("Id")
@@ -118,14 +276,11 @@ namespace GnomShop.Migrations
                     b.Property<int>("Discount")
                         .HasColumnType("int");
 
+                    b.Property<Guid?>("DisplayedProductsId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("Gender")
                         .HasColumnType("int");
-
-                    b.Property<bool>("IsDisplayed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsNovelty")
-                        .HasColumnType("bit");
 
                     b.Property<string>("MetaDescription")
                         .HasMaxLength(1000)
@@ -153,6 +308,8 @@ namespace GnomShop.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DisplayedProductsId");
 
                     b.ToTable("ProductItems");
                 });
@@ -206,7 +363,7 @@ namespace GnomShop.Migrations
                         new
                         {
                             Id = "96ba8f64-053a-4574-a0bb-b73ecc88c761",
-                            ConcurrencyStamp = "81cca60e-e02e-4e0e-97fd-d9fb77796fe2",
+                            ConcurrencyStamp = "66773391-e883-4409-9b28-27e23cab6a01",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -305,13 +462,13 @@ namespace GnomShop.Migrations
                         {
                             Id = "4c6e757b-ecb2-40a8-94fe-a2d3ecca28ca",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3a21fe07-480f-494b-905e-a62e5aad176f",
+                            ConcurrencyStamp = "631335de-02c7-4a34-890d-6664e792569b",
                             Email = "nikita_semik2000@mail.ru",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "nikita_semik2000@mail.ru",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDbn5NgYKorERZci2O3iDI7hL5sDosNqvzZOKxmmOIA0ucJg7mLzGInEj6T4yjB+aA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEO9KkUkjk+WPGne0CgMhybkUN0oebtZpTgmxCTpC8KkJl04doBxSeHH4U85P6mQXDg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -406,6 +563,17 @@ namespace GnomShop.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("GnomShop.Models.DbEntities.Category", b =>
+                {
+                    b.HasOne("GnomShop.Models.DbEntities.CategoriesOfTheMonth", "CategoriesOfTheMonth")
+                        .WithMany("Categories")
+                        .HasForeignKey("CategoriesOfTheMonthId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CategoriesOfTheMonth");
+                });
+
             modelBuilder.Entity("GnomShop.Models.Image", b =>
                 {
                     b.HasOne("GnomShop.Models.ProductItem", "ProductItem")
@@ -415,6 +583,13 @@ namespace GnomShop.Migrations
                         .IsRequired();
 
                     b.Navigation("ProductItem");
+                });
+
+            modelBuilder.Entity("GnomShop.Models.ProductItem", b =>
+                {
+                    b.HasOne("GnomShop.Models.DbEntities.DisplayedProducts", null)
+                        .WithMany("Products")
+                        .HasForeignKey("DisplayedProductsId");
                 });
 
             modelBuilder.Entity("GnomShop.Models.Size", b =>
@@ -477,6 +652,16 @@ namespace GnomShop.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("GnomShop.Models.DbEntities.CategoriesOfTheMonth", b =>
+                {
+                    b.Navigation("Categories");
+                });
+
+            modelBuilder.Entity("GnomShop.Models.DbEntities.DisplayedProducts", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("GnomShop.Models.ProductItem", b =>
