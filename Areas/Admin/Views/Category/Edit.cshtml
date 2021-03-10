@@ -1,0 +1,54 @@
+﻿@model Category
+@{
+    string pageTitle = "Редактировать категорию месяца";
+    ViewBag.Title = pageTitle;
+}
+
+<div style="margin: 20px">
+    <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-area="Admin" asp-controller="CategoriesOfTheMonth" asp-action="Edit">Назад</a>
+    <br />
+    <div class="form">
+        <h1 class="h2 pb-4">@pageTitle</h1>
+        <div>
+            <form asp-area="Admin" asp-controller="Category" asp-action="Edit" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="CategoriesOfTheMonthId" />
+
+                <div asp-validation-summary="All"></div>
+                <div>
+                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="@Model.ProductItemType"></label>
+                    <select class="form-control" id="productItemType" asp-for="@Model.ProductItemType" asp-items="@Html.GetEnumSelectList<ProductItemType>()"></select>
+                    <br />
+                </div>
+                <div>
+                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="@Model.Alt"></label>
+                    <input class="form-control" id="description" asp-for="@Model.Alt" />
+                    <span asp-validation-for="@Model.Alt"></span>
+                    <br />
+                </div>
+                <div>
+                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none">Изображения лучше подгонять под: 800x800px (равное соотношение сторон)</label>
+                </div>
+                <div class="row">
+                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none">Текущее изображение</label>
+                    @if (Model.Image != null)
+                    {
+                        <img class="col-md-4 card" src="@string.Format("data:image/{0};base64,{1}", Model.Extension, Convert.ToBase64String(Model.Image))" />
+                    }
+                    <br />
+                </div>
+                <div>
+                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="@Model.Image"></label>
+                    <input class="form-control" type="file" name="titleImageFile" id="titleImageFile" onchange="handleFiles(this.files)" accept="image/*" />
+                    <br />
+                </div>
+                <div class="row" id="preview">
+
+
+                </div>
+                <br />
+                <input class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" type="submit" value="Сохранить" />
+            </form>
+        </div>
+    </div>
+</div>

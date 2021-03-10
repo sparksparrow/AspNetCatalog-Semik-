@@ -77,5 +77,27 @@ namespace GnomShop.Models
         [DataType(DataType.DateTime)]
         [Display(Name = "Дата")]
         public DateTime DateAdded { get; set; }
+
+        public override bool Equals(Object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                ProductItem productItem = (ProductItem)obj;
+                return
+                    (
+                      Id == productItem.Id
+                    ); ;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return Tuple.Create(Id).GetHashCode();
+        }
     }
 }
+

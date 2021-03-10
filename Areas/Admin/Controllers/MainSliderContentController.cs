@@ -19,6 +19,10 @@ namespace GnomShop.Areas.Admin.Controllers
         {
             this.dataManager = dataManager;
         }
+        public IActionResult EditMainSliderContent()
+        {
+            return View(dataManager.MainSliderContent.GetMainSliderContents());
+        }
         public IActionResult Edit(Guid id)
         {
             return View(dataManager.MainSliderContent.GetMainSliderContentById(id));
@@ -28,26 +32,16 @@ namespace GnomShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (titleImageFile != null)
+                var tupleExtImg = ImageValidator.ValidateImg(titleImageFile);
+
+                if(tupleExtImg!=default)
                 {
-                    var ext = Path.GetExtension(titleImageFile.FileName).ToLowerInvariant();
-
-                    if (titleImageFile.Length <= Config.FileSizeLimit && !string.IsNullOrEmpty(ext) && Config.PermittedExtensions.Contains(ext))
-                    {
-                        model.Extension = ext.Replace(".","");
-                        byte[] imageData = null;
-
-                        using (var binaryReader = new BinaryReader(titleImageFile.OpenReadStream()))
-                        {
-                            imageData = binaryReader.ReadBytes((int)titleImageFile.Length);
-                        }
-
-                        model.Image = imageData;
-                    }
-                }
+                    model.Extension = tupleExtImg.Item1;
+                    model.Image = tupleExtImg.Item2; 
+                }    
 
                 dataManager.MainSliderContent.SaveMainSliderContent(model);
-                return RedirectToAction(nameof(IndexMainController.EditMainSliderContent), nameof(IndexMainController).CutController());
+                return RedirectToAction(nameof(MainSliderContentController.EditMainSliderContent), nameof(MainSliderContentController).CutController());
             }
             return View(model);
         }

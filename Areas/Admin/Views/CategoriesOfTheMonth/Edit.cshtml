@@ -1,0 +1,51 @@
+﻿@model CategoriesOfTheMonth
+@{
+    string pageTitle = "Редактировать категории месяца";
+    ViewBag.Title = pageTitle;
+}
+
+<div style="margin: 20px">
+    <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Назад</a>
+    <br />
+    <div class="form">
+        <h1 class="h2 pb-4">@pageTitle</h1>
+        <div>
+            <form asp-area="Admin" asp-controller="CategoriesOfTheMonth" asp-action="Edit" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+
+                <div asp-validation-summary="All"></div>
+                <div>
+                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Title"></label>
+                    <input class="form-control" id="titleItem" asp-for="Title" />
+                    <span asp-validation-for="Title"></span>
+                    <br />
+                </div>
+                <div>
+                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Description"></label>
+                    <input class="form-control" id="description" asp-for="Description" />
+                    <span asp-validation-for="Description"></span>
+                    <br />
+                </div> 
+                <div class="row">                    
+                    @foreach (Category entity in Model.Categories)
+                    {
+                        <div class="col-12 col-md-4 p-5 mt-3">
+                            @if (entity.Image != null)
+                            {
+                                <a asp-area="Admin" asp-controller="Category" asp-action="Edit" asp-route-id="@entity.Id"><img src="@string.Format("data:image/{0};base64,{1}", entity.Extension, Convert.ToBase64String(entity.Image))" class="rounded-circle img-fluid border"></a>
+                            }
+                            else
+                            {
+                                <a asp-area="Admin" asp-controller="Category" asp-action="Edit" asp-route-id="@entity.Id"><img src="~/images/DefaultImages/Soon.png" class="rounded-circle img-fluid border"></a>
+                            }
+                        <h2 class="h5 text-center mt-3 mb-3">@Html.DisplayFor(x => @entity.ProductItemType)</h2>
+                            <p class="text-center"><a class="btn btn-success" a asp-area="Admin" asp-controller="Category" asp-action="Edit" asp-route-id="@entity.Id">Редактировать</a></p>
+                        </div>
+                    }
+                </div>
+                <br />
+                <input class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" type="submit" value="Сохранить" />
+            </form>
+        </div>
+    </div>
+</div>

@@ -10,8 +10,9 @@ namespace GnomShop.Domain
         public IMainSliderContent MainSliderContent { get; set; }
         public ICategoriesOfTheMonth CategoriesOfTheMonth { get; set; }
         public IDisplayedProducts DisplayedProducts { get; set; }
+        public ICategory Category { get; set; }
 
-        public DataManager(IPageTitleRepository page, IProductItemRepository productItems, ISizeRepository sizes, IMainSliderContent mainSliderContent, ICategoriesOfTheMonth categoriesOfTheMonth, IDisplayedProducts displayedProducts)
+        public DataManager(IPageTitleRepository page, IProductItemRepository productItems, ISizeRepository sizes, IMainSliderContent mainSliderContent, ICategoriesOfTheMonth categoriesOfTheMonth, IDisplayedProducts displayedProducts, ICategory category)
         {
             Pages = page;
             ProductItems = productItems;
@@ -19,6 +20,7 @@ namespace GnomShop.Domain
             MainSliderContent = mainSliderContent;
             CategoriesOfTheMonth = categoriesOfTheMonth;
             DisplayedProducts = displayedProducts;
+            Category = category;
         }
 
     }

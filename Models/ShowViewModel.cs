@@ -33,7 +33,11 @@ namespace GnomShop.Models
                 var additionalProducts = await prodcutsItems
                     .Where(p=>p.ProductItemType==productItem.ProductItemType)                    
                     .ToListAsync();
-                additionalProducts = additionalProducts.Except(relatedProdcuts).ToList();
+
+                var exceptList = relatedProdcuts.ToList();
+                exceptList.Add(productItem);
+
+                additionalProducts = additionalProducts.Except(exceptList).ToList();
 
                 int countRealted = relatedProdcuts.Count();
                 int countAdditional = additionalProducts.Count();

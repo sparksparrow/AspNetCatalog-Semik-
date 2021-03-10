@@ -27,7 +27,7 @@ namespace GnomShop.Domain.Repositories.EF
         public void SaveMainSliderContent(MainSliderContent entity)
         {
             if (entity.Image == null)
-            {
+            {                
                 entity.Image = GetMainSliderContentById(entity.Id).Image;
             }
             context.Entry(entity).State = EntityState.Modified;

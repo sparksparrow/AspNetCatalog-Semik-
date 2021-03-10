@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GnomShop.Services;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace GnomShop.Models.DbEntities
@@ -8,7 +9,7 @@ namespace GnomShop.Models.DbEntities
         [Required]
         public Guid Id { get; set; }
         [Display(Name = "Категория")]
-        public ProductItemType ProductItemType { get; set; }
+        public PluralProductItemTypes ProductItemType { get; set; }
         [Display(Name = "Картинка")]
         public byte[] Image { get; set; }
 

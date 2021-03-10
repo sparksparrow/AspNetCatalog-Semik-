@@ -184,7 +184,7 @@
                     @foreach (ProductItem entity in paginateProductItems)
                     {
                         <div class="col-md-4">
-                            <div style="height: 95%" class="card mb-4 product-wap rounded-0">
+                            <div style="height: 99%" class="card mb-4 product-wap rounded-0">
                                 <div class="card rounded-0">
                                     @if (entity.Images.FirstOrDefault() != default)
                                     {
@@ -200,43 +200,47 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <a class="h3 text-decoration-none" asp-area="" asp-controller="Products" asp-action="Index" asp-route-id="@entity.Id">@entity.Name</a>
-                                    <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                        <li>
-                                            @if (entity.Sizes != null && entity.Sizes.Any())
-                                            {
-                                                @for (int i = 0; i < entity.Sizes.Count; i++)
+                                <div class="card-body" style="display: flex; flex-direction: column; height: 100%; ">
+                                    <div style="flex: 1 0 auto;">
+                                        <a class="h3 text-decoration-none" href="/Products/Index/@entity.Id">@entity.Name</a>
+                                    </div>
+                                    <div style="flex: 0 0 auto;">
+                                        <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                                            <li>
+                                                @if (entity.Sizes != null && entity.Sizes.Any())
                                                 {
-                                                    if (i != 0)
+                                                    @for (int i = 0; i < entity.Sizes.Count; i++)
                                                     {
-                                                        <span>/</span>
+                                                        if (i != 0)
+                                                        {
+                                                            <span>/</span>
+                                                        }
+                                                        <span>@entity.Sizes.ElementAt(i).SizeValue</span>;
                                                     }
-                                                    <span>@entity.Sizes.ElementAt(i).SizeValue</span>;
                                                 }
-                                            }
-                                            else
-                                            {
-                                                <span>Отсутствуют</span>
-                                            }
-                                        </li>
-                                    </ul>
-                                    @if (entity.Discount == 0)
-                                    {
-                                        <p class="text-center mb-0">
-                                            @entity.Price&#8381;
-                                        </p>
-                                        <p class="text-center mb-0"><br></p>
-                                    }
-                                    else
-                                    {
-                                        <p class="text-center mb-0">
-                                            <strike> @entity.Price&#8381; </strike>&nbsp;<font color="red">-@entity.Discount%</font>
-                                        </p>
-                                        <p class="text-center mb-0">
-                                            @entity.TotalPrice&#8381;
-                                        </p>
-                                    }
+                                                else
+                                                {
+                                                    <span>Отсутствуют</span>
+                                                }
+                                            </li>
+                                        </ul>
+                                        @if (entity.Discount == 0)
+                                        {
+                                            <p class="text-center mb-0">
+                                                @entity.Price&#8381;
+                                            </p>
+                                            <p class="text-center mb-0"><br></p>
+                                        }
+                                        else
+                                        {
+                                            <p class="text-center mb-0">
+                                                <strike> @entity.Price&#8381; </strike>&nbsp;<font color="red">-@entity.Discount%</font>
+                                            </p>
+                                            <p class="text-center mb-0">
+                                                @entity.TotalPrice&#8381;
+                                            </p>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>

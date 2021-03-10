@@ -197,9 +197,10 @@ D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Views\Shared\
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Views\Shared\TopNav.cshtml.g.cs
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Views\Products\CssPartial.cshtml.g.cs
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Views\Products\ScriptsPartial.cshtml.g.cs
-D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\IndexMain\EditMainSliderContent.cshtml.g.cs
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\MainSliderContent\Edit.cshtml.g.cs
-D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\IndexMain\EditCategoriesOfTheMonth.cshtml.g.cs
-D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\IndexMain\EditDisplayedProducts.cshtml.g.cs
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\ScriptsPartial.cshtml.g.cs
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\GnomShop.csprojAssemblyReference.cache
+D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\CategoriesOfTheMonth\Edit.cshtml.g.cs
+D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\DisplayedProducts\Edit.cshtml.g.cs
+D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\MainSliderContent\EditMainSliderContent.cshtml.g.cs
+D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Category\Edit.cshtml.g.cs
