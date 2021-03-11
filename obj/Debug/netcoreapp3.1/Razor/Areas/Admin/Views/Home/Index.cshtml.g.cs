@@ -40,8 +40,15 @@ using GnomShop.Services;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "D:\C++ projects\AspNetCatalog-Semik-\Areas\Admin\Views\_ViewImports.cshtml"
+using Newtonsoft.Json;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"86c973c2ffbf51a0394b21dc54e007dab6bf8a20", @"/Areas/Admin/Views/Home/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"569de12bf148dc5bfc624aaeb8d69c062d445b80", @"/Areas/Admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"faf41cca3a237b4684a2ce8534a1ce1913b76f57", @"/Areas/Admin/Views/_ViewImports.cshtml")]
     public class Areas_Admin_Views_Home_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IQueryable<ProductItem>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-area", "", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -94,7 +101,7 @@ using GnomShop.Services;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("\r\n<div id=\"main\">\r\n    <div>\r\n        <br />\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2011171", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2011350", async() => {
                 WriteLiteral("\r\n            <input style=\"width: 100%;\" class=\" btn btn-success\" type=\"submit\" value=\"Выйти\" />\r\n        ");
             }
             );
@@ -118,7 +125,7 @@ using GnomShop.Services;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n    </div>\r\n    <div>\r\n        <br />\r\n        <h3 class=\"h2 pb-4\">Редактировать главну страницу сайта</h3>\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2013447", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2013626", async() => {
                 WriteLiteral("Редактировать главный слайдер");
             }
             );
@@ -139,7 +146,7 @@ using GnomShop.Services;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2015123", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2015302", async() => {
                 WriteLiteral("Редактировать категории месяца");
             }
             );
@@ -160,7 +167,7 @@ using GnomShop.Services;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2016800", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2016979", async() => {
                 WriteLiteral("Редактировать товары на главной");
             }
             );
@@ -181,7 +188,7 @@ using GnomShop.Services;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n    </div>\r\n    <div>\r\n        <br />\r\n        <h3 class=\"h2 pb-4\">Редактировать страницы сайта</h3>\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2018592", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2018771", async() => {
                 WriteLiteral("Главная");
             }
             );
@@ -208,7 +215,7 @@ using GnomShop.Services;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2020772", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2020951", async() => {
                 WriteLiteral("Каталог");
             }
             );
@@ -235,7 +242,7 @@ using GnomShop.Services;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2022952", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2023131", async() => {
                 WriteLiteral("Контакты");
             }
             );
@@ -262,7 +269,7 @@ using GnomShop.Services;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2025133", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2025312", async() => {
                 WriteLiteral("О нас");
             }
             );
@@ -289,7 +296,7 @@ using GnomShop.Services;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n    </div>\r\n    <div>\r\n        <br />\r\n        <h2 class=\"h2 pb-4\">Наши продукты</h2>\r\n        <div>\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2027429", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2027608", async() => {
                 WriteLiteral("Добавить продукт");
             }
             );
@@ -334,7 +341,7 @@ using GnomShop.Services;
 #line hidden
 #nullable disable
             WriteLiteral("                    <div style=\" height: 4em; display: flex; align-items: center\">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2030254", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2030433", async() => {
                 WriteLiteral("Редактировать");
             }
             );
@@ -371,7 +378,7 @@ using GnomShop.Services;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                        |\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2033195", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2033374", async() => {
                 WriteLiteral("\r\n                            <input style=\"display:inline-block;\" type=\"hidden\" name=\"id\"");
                 BeginWriteAttribute("value", " value=\"", 2963, "\"", 2981, 1);
 #nullable restore
@@ -428,7 +435,7 @@ AddHtmlAttributeValue("", 2784, entity.Id, 2784, 10, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                        |\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2037105", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86c973c2ffbf51a0394b21dc54e007dab6bf8a2037284", async() => {
                 WriteLiteral("\r\n                            ");
 #nullable restore
 #line 46 "D:\C++ projects\AspNetCatalog-Semik-\Areas\Admin\Views\Home\Index.cshtml"

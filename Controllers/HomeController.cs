@@ -26,10 +26,13 @@ namespace GnomShop.Controllers
         {
             ViewBag.PageTitle = dataManager.Pages.GetPageTitleByCodeWord("PageIndex");
             return View(new IndexViewModel(
-                dataManager.MainSliderContent.GetMainSliderContents(),
-                await dataManager.CategoriesOfTheMonth.GetCategoriesOfTheMonthAsync(),
-                await dataManager.DisplayedProducts.GetDisplayedProductsAsync()
-                ));
+                dataManager.MainSliderContent.GetMainSliderContentsAsNoTracking(),
+                await dataManager.CategoriesOfTheMonth.GetCategoriesOfTheMonthAsNoTrackingAsync(),
+                new DisplayedProductsViewModel(
+                     await dataManager.DisplayedProducts.GetDisplayedProductsAsNoTrackingAsync(),
+                     dataManager.ProductItems.GetProducts()
+                     )
+                )) ;
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

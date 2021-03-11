@@ -18,12 +18,17 @@ namespace GnomShop.Domain.Repositories.EF
             return await context.CategoriesOfTheMonths.Include(c => c.Categories).SingleOrDefaultAsync();
         }
 
+        public async Task<CategoriesOfTheMonth> GetCategoriesOfTheMonthAsNoTrackingAsync()
+        {
+            return await context.CategoriesOfTheMonths.Include(c => c.Categories).AsNoTracking().SingleOrDefaultAsync();
+        }
+
         public async Task<Category> GetCategoryByIdAsync(Guid id)
         {
             return await context.Categories.SingleOrDefaultAsync(c=>c.Id==id);
         }
 
-        public async void SaveCategoriesOfTheMonthAsync(CategoriesOfTheMonth entity)
+        public void SaveCategoriesOfTheMonth(CategoriesOfTheMonth entity)
         {            
             context.Entry(entity).State = EntityState.Modified;   
             context.SaveChanges();

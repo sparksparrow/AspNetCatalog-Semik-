@@ -76,8 +76,8 @@ namespace GnomShop.Models
 
         [DataType(DataType.DateTime)]
         [Display(Name = "Дата")]
-        public DateTime DateAdded { get; set; }
-
+        public DateTime DateAdded { get; set; }        
+     
         public override bool Equals(Object obj)
         {
             if ((obj == null) || !this.GetType().Equals(obj.GetType()))

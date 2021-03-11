@@ -40,8 +40,15 @@ using GnomShop.Services;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "D:\C++ projects\AspNetCatalog-Semik-\Areas\Admin\Views\_ViewImports.cshtml"
+using Newtonsoft.Json;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"76a82d9ad412bf35b805e63b01751be8b29c2573", @"/Areas/Admin/Views/MainSliderContent/EditMainSliderContent.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"569de12bf148dc5bfc624aaeb8d69c062d445b80", @"/Areas/Admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"faf41cca3a237b4684a2ce8534a1ce1913b76f57", @"/Areas/Admin/Views/_ViewImports.cshtml")]
     public class Areas_Admin_Views_MainSliderContent_EditMainSliderContent : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IQueryable<MainSliderContent>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -92,7 +99,7 @@ using GnomShop.Services;
 #line hidden
 #nullable disable
             WriteLiteral("</h1>\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "76a82d9ad412bf35b805e63b01751be8b29c25736204", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "76a82d9ad412bf35b805e63b01751be8b29c25736383", async() => {
                 WriteLiteral("Назад");
             }
             );
@@ -131,7 +138,7 @@ using GnomShop.Services;
 #line hidden
 #nullable disable
             WriteLiteral("                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "76a82d9ad412bf35b805e63b01751be8b29c25738441", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "76a82d9ad412bf35b805e63b01751be8b29c25738620", async() => {
                 WriteLiteral("Редактировать ");
 #nullable restore
 #line 17 "D:\C++ projects\AspNetCatalog-Semik-\Areas\Admin\Views\MainSliderContent\EditMainSliderContent.cshtml"

@@ -7,7 +7,8 @@ namespace GnomShop.Domain.Repositories.Interfaces
     public interface IMainSliderContent
     {
         IQueryable<MainSliderContent> GetMainSliderContents();
-        MainSliderContent GetMainSliderContentById(Guid id);
+        IQueryable<MainSliderContent> GetMainSliderContentsAsNoTracking();
+        MainSliderContent GetMainSliderContentByIdAsNoTracking(Guid id);
         void SaveMainSliderContent(MainSliderContent entity);
     }
 }

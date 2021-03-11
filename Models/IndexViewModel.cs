@@ -1,4 +1,5 @@
 ﻿using GnomShop.Models.DbEntities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,12 @@ namespace GnomShop.Models
     {
         public IQueryable<MainSliderContent> MainSliderContents { get; private set; }
         public CategoriesOfTheMonth CategoriesOfTheMonth { get; private set; }
-        public DisplayedProducts DisplayedProducts { get; private set; }
-
-        public IndexViewModel(IQueryable<MainSliderContent> mainSliderContents, CategoriesOfTheMonth categoriesOfTheMonth, DisplayedProducts displayedProducts)
+        public DisplayedProductsViewModel DisplayedProductsViewModel { get; private set; }
+        public IndexViewModel(IQueryable<MainSliderContent> mainSliderContents, CategoriesOfTheMonth categoriesOfTheMonth, DisplayedProductsViewModel displayedProducts)
         {
             MainSliderContents = mainSliderContents;
             CategoriesOfTheMonth = categoriesOfTheMonth;
-            DisplayedProducts = displayedProducts;
-        }
+            DisplayedProductsViewModel = displayedProducts;
+        }        
     }
 }

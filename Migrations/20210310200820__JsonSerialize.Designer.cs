@@ -4,14 +4,16 @@ using GnomShop.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GnomShop.Migrations
 {
     [DbContext(typeof(CatalogDbContext))]
-    partial class CatalogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210310200820__JsonSerialize")]
+    partial class _JsonSerialize
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -361,7 +363,7 @@ namespace GnomShop.Migrations
                         new
                         {
                             Id = "96ba8f64-053a-4574-a0bb-b73ecc88c761",
-                            ConcurrencyStamp = "bce211b8-13ba-423f-b9d7-10b9ba2138c9",
+                            ConcurrencyStamp = "e9625127-4287-4a96-882b-55ec7b6e578b",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -460,13 +462,13 @@ namespace GnomShop.Migrations
                         {
                             Id = "4c6e757b-ecb2-40a8-94fe-a2d3ecca28ca",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3c86ce6d-bc0d-46af-ab8d-f56e240b4a71",
+                            ConcurrencyStamp = "94b31855-b1fd-41c6-b996-ce4d83a4d250",
                             Email = "nikita_semik2000@mail.ru",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "nikita_semik2000@mail.ru",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEUWyTwKHnnzfV9UTT2bcuUR1TQV2iDXNXq3HPB5tyl9Pm6ZZmw1Tut0tZbuE8KQXA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOeej2VzYcd94UDQgAQz0BV0QqJDnk5T4x+okdsrKfqwjyG5FhAUnvnEvkkJEN20YA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

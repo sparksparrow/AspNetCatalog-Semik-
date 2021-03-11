@@ -14,7 +14,7 @@ namespace GnomShop.Models.DbEntities
         [StringLength(500)]
         [Display(Name = "Описание")]
         public string Description { get; set; }
-        [Display(Name = "Продукты")]
-        public IList<ProductItem> Products { get; set; }
+        [Display(Name = "Продукты на главной")]
+        public string Products { get; set; }
     }
 }

@@ -136,14 +136,6 @@ namespace GnomShop.Domain
                 Title = "Лучшие продукты",
                 Description = "Здесь мы выбираем самые оригинальные модели"
             });
-        }
-
-        public void Configure(EntityTypeBuilder<DisplayedProducts> builder)
-        {
-            builder.Property(d => d.Products).HasConversion(
-                v => JsonConvert.SerializeObject(v, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }),
-                v => JsonConvert.DeserializeObject<IList<ProductItem>>(v, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
-        }
-
+        }   
     }
 }

@@ -18,8 +18,12 @@ namespace GnomShop.Domain.Repositories.EF
         {
             return context.MainSliderContents;
         }
+        public IQueryable<MainSliderContent> GetMainSliderContentsAsNoTracking()
+        {
+            return context.MainSliderContents.AsNoTracking();
+        }
 
-        public MainSliderContent GetMainSliderContentById(Guid id)
+        public MainSliderContent GetMainSliderContentByIdAsNoTracking(Guid id)
         {
             return context.MainSliderContents.AsNoTracking().FirstOrDefault(m=>m.Id==id);
         }
@@ -28,7 +32,7 @@ namespace GnomShop.Domain.Repositories.EF
         {
             if (entity.Image == null)
             {                
-                entity.Image = GetMainSliderContentById(entity.Id).Image;
+                entity.Image = GetMainSliderContentByIdAsNoTracking(entity.Id).Image;
             }
             context.Entry(entity).State = EntityState.Modified;
             context.SaveChanges();

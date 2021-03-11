@@ -3,7 +3,7 @@
     bool existActiveContent = false;
     IList<MainSliderContent> mainSliderContents = Model.MainSliderContents.ToList();
     CategoriesOfTheMonth categoriesOfTheMonth = Model.CategoriesOfTheMonth;
-    DisplayedProducts displayedProducts = Model.DisplayedProducts;
+    DisplayedProductsViewModel displayedProducts = Model.DisplayedProductsViewModel;
 }
 
 <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
@@ -35,7 +35,7 @@
                     <div class="carousel-item">
                         <div class="container">
                             <div class="row p-5">
-                                <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                                <div class="mx-auto col-md-8 col-lg-6 order-lg-last" style="margin-bottom: 15px;">
                                     <img class="img-fluid" src="@string.Format("data:image/{0};base64,{1}",mainSliderContents[i].Extension ,Convert.ToBase64String(mainSliderContents[i].Image))" alt="">
                                 </div>
                                 <div class="col-lg-6 mb-0 d-flex align-items-center">
@@ -56,7 +56,7 @@
                     <div class="carousel-item active">
                         <div class="container">
                             <div class="row p-5">
-                                <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                                <div class="mx-auto col-md-8 col-lg-6 order-lg-last" style="margin-bottom: 15px;">
                                     <img class="img-fluid" src="@string.Format("data:image/{0};base64,{1}",mainSliderContents[i].Extension ,Convert.ToBase64String(mainSliderContents[i].Image))" alt="@mainSliderContents[i].Alt">
                                 </div>
                                 <div class="col-lg-6 mb-0 d-flex align-items-center">
@@ -103,10 +103,10 @@
                 }
                 else
                 {
-                    <a asp-area="Admin" asp-controller="Category" asp-action="Edit" asp-route-id="@entity.Id"><img src="~/images/DefaultImages/Soon.png" class="rounded-circle img-fluid border"></a>
+                    <a asp-area="Admin" asp-controller="Category" asp-action="Edit" asp-route-id="@entity.Id"><img src="~/images/DefaultImages/Soon600_800.png.png" class="rounded-circle img-fluid border"></a>
                 }
                 <h2 class="h5 text-center mt-3 mb-3">@Html.DisplayFor(x => @entity.ProductItemType)</h2>
-                <p class="text-center"><a class="btn btn-success" a asp-area="Admin" asp-controller="Category" asp-action="Edit" asp-route-id="@entity.Id">Редактировать</a></p>
+                <p class="text-center"><a class="btn btn-success" a asp-area="Admin" asp-controller="Category" asp-action="Edit" asp-route-id="@entity.Id">Вперёд!</a></p>
             </div>
         }        
     </div>
@@ -116,85 +116,49 @@
     <div class="container py-5">
         <div class="row text-center py-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h1">@displayedProducts.Title</h1>
+                <h1 class="h1">@displayedProducts.DisplayedProducts.Title</h1>
                 <p>
-                    @displayedProducts.Description
+                    @displayedProducts.DisplayedProducts.Description
                 </p>
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card h-100">
-                    <a href="shop-single.html">
-                        <img src="./img/feature_prod_01.jpg" class="card-img-top" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <ul class="list-unstyled d-flex justify-content-between">
-                            <li>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-muted fa fa-star"></i>
-                                <i class="text-muted fa fa-star"></i>
-                            </li>
-                            <li class="text-muted text-right">$240.00</li>
-                        </ul>
-                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Gym Weight</a>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia deserunt.
-                        </p>
-                        <p class="text-muted">Reviews (24)</p>
-                    </div>
+            @foreach (ProductItem product in displayedProducts.DisplayedProductItems)
+            {
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100">
+                        <a asp-area="" asp-controller="Products" asp-action="Index" asp-route-id="@product.Id">
+                            @if (product.Images.FirstOrDefault() != default)
+                            {
+                                <img class="card-img-top" src="~/images/ProductItems/@product.Id/@product.Images.FirstOrDefault().Name" alt="@product.Images.FirstOrDefault().Alt" />
+                            }
+                            else
+                            {
+                                <img class="card-img-top" src="~/images/DefaultImages/Soon.png" alt="В процессе добавления." />
+                            }
+                        </a>
+                        <div class="card-body" style="display: flex; flex-direction: column; height: 100%; ">
+                            <div style="flex: 1 0 auto;">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    @if (product.Discount == 0)
+                                    {
+                                        <li class="text-muted text-right">@product.TotalPrice&#8381;</li>
+                                    }
+                                    else
+                                    {
+                                        <li class="text-muted text-right">@product.TotalPrice&#8381;</li>
+                                        <li class="text-muted text-right"> <strike> @product.Price&#8381; </strike>&nbsp;<font color="red">-@product.Discount%</font></li>
+                                    }
+                                </ul>
+                                <a class="h2 text-decoration-none text-dark" asp-area="" asp-controller="Products" asp-action="Index" asp-route-id="@product.Id">@product.Name</a>
+                                <p class="card-text">
+                                    @product.Description
+                                </p>
+                            </div>
+                            </div>
+                        </div>
                 </div>
-            </div>
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card h-100">
-                    <a href="shop-single.html">
-                        <img src="./img/feature_prod_02.jpg" class="card-img-top" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <ul class="list-unstyled d-flex justify-content-between">
-                            <li>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-muted fa fa-star"></i>
-                                <i class="text-muted fa fa-star"></i>
-                            </li>
-                            <li class="text-muted text-right">$480.00</li>
-                        </ul>
-                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Cloud Nike Shoes</a>
-                        <p class="card-text">
-                            Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae pharetra sed, commodo ullamcorper.
-                        </p>
-                        <p class="text-muted">Reviews (48)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card h-100">
-                    <a href="shop-single.html">
-                        <img src="./img/feature_prod_03.jpg" class="card-img-top" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <ul class="list-unstyled d-flex justify-content-between">
-                            <li>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                            </li>
-                            <li class="text-muted text-right">$360.00</li>
-                        </ul>
-                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Summer Addides Shoes</a>
-                        <p class="card-text">
-                            Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
-                        </p>
-                        <p class="text-muted">Reviews (74)</p>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </section>

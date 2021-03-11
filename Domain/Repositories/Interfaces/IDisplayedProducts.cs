@@ -7,5 +7,7 @@ namespace GnomShop.Domain.Repositories.Interfaces
     {
         Task<DisplayedProducts> GetDisplayedProductsAsync();
         void SaveDisplayedProducts(DisplayedProducts entity);
+        Task<DisplayedProducts> GetDisplayedProductsAsNoTrackingAsync();
+        string GetDisplayedProducts();
     }
 }

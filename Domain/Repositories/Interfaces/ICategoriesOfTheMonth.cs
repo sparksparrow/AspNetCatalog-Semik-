@@ -7,7 +7,8 @@ namespace GnomShop.Domain.Repositories.Interfaces
     public interface ICategoriesOfTheMonth
     {        
         Task<CategoriesOfTheMonth> GetCategoriesOfTheMonthAsync();
-        void SaveCategoriesOfTheMonthAsync(CategoriesOfTheMonth entity);
+        Task<CategoriesOfTheMonth> GetCategoriesOfTheMonthAsNoTrackingAsync();
+        void SaveCategoriesOfTheMonth(CategoriesOfTheMonth entity);
         Task<Category> GetCategoryByIdAsync(Guid id);
     }
 }

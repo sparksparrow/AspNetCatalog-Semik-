@@ -25,7 +25,7 @@ namespace GnomShop.Areas.Admin.Controllers
         }
         public IActionResult Edit(Guid id)
         {
-            return View(dataManager.MainSliderContent.GetMainSliderContentById(id));
+            return View(dataManager.MainSliderContent.GetMainSliderContentByIdAsNoTracking(id));
         }
         [HttpPost]
         public IActionResult Edit(MainSliderContent model, IFormFile titleImageFile)

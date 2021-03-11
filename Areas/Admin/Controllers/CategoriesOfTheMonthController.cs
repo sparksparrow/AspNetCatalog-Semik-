@@ -26,7 +26,7 @@ namespace GnomShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {                
-                dataManager.CategoriesOfTheMonth.SaveCategoriesOfTheMonthAsync(model);
+                dataManager.CategoriesOfTheMonth.SaveCategoriesOfTheMonth(model);
                 return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
             }
             return View(model);

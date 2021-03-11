@@ -2,6 +2,10 @@
 @{
     string pageTitle = "Редактировать товары на главной";
     ViewBag.Title = pageTitle;
+    IList<ProductItem> productItems = (ViewBag.Products as IEnumerable<ProductItem>).ToList();
+
+    IList<Guid> arrayProducts = Model.Products != null ? JsonConvert.DeserializeObject<List<Guid>>(Model.Products) : new List<Guid>();
+    IEnumerable<ProductItem> displayedProductItems = productItems.Where(x => arrayProducts.Contains(x.Id));
 }
 
 <div style="margin: 20px">
@@ -27,7 +31,167 @@
                     <br />
                 </div>
                 <input class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" type="submit" value="Сохранить" />
+                <br />
             </form>
+            <div>
+                <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Products"></label>
+                <label class="collapsed d-flex justify-content-between h3 text-decoration-none" >(достаточно 3 продуктов)</label>
+                <br />
+                <div class="row">
+                    @if (displayedProductItems != null && displayedProductItems.Any())
+                    {
+                        @foreach (ProductItem entity in displayedProductItems)
+                        {
+                            <div class="col-md-4">
+                                <div style="height: 99%" class="card mb-4 product-wap rounded-0">
+                                    <div class="card rounded-0">
+                                        @if (entity.Images.FirstOrDefault() != default)
+                                        {
+                                            <img src="~/images/ProductItems/@entity.Id/@entity.Images.FirstOrDefault().Name" alt="@entity.Images.FirstOrDefault().Alt" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/images/DefaultImages/Soon.png" alt="В процессе добавления." />
+                                        }
+                                        <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <form style="display:inline-block;" id="form_delete-@entity.Id" asp-area="Admin" asp-controller="DisplayedProducts" asp-action="DeleteDisplayed" method="post">
+                                                        <input style="display:inline-block;" type="hidden" name="guid" value="@entity.Id" />
+                                                        <a style="display:inline-block;" class="btn btn-success" href="#" onclick="document.getElementById('form_delete-@entity.Id').submit();">Удалить</a>
+                                                    </form>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card-body" style="display: flex; flex-direction: column; height: 100%; ">
+                                        <div style="flex: 1 0 auto;">
+                                            <a class="h3 text-decoration-none" href="/Products/Index/@entity.Id">@entity.Name</a>
+                                        </div>
+                                        <div style="flex: 0 0 auto;">
+                                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                                                <li>
+                                                    @if (entity.Sizes != null && entity.Sizes.Any())
+                                                    {
+                                                        @for (int i = 0; i < entity.Sizes.Count; i++)
+                                                        {
+                                                            if (i != 0)
+                                                            {
+                                                                <span>/</span>
+                                                            }
+                                                            <span>@entity.Sizes.ElementAt(i).SizeValue</span>;
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>Отсутствуют</span>
+                                                    }
+                                                </li>
+                                            </ul>
+                                            @if (entity.Discount == 0)
+                                            {
+                                                <p class="text-center mb-0">
+                                                    @entity.Price&#8381;
+                                                </p>
+                                                <p class="text-center mb-0"><br></p>
+                                            }
+                                            else
+                                            {
+                                                <p class="text-center mb-0">
+                                                    <strike> @entity.Price&#8381; </strike>&nbsp;<font color="red">-@entity.Discount%</font>
+                                                </p>
+                                                <p class="text-center mb-0">
+                                                    @entity.TotalPrice&#8381;
+                                                </p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <div>
+                <br />
+                <label class="collapsed d-flex justify-content-between h3 text-decoration-none">Все продукты</label>
+                <br />
+                <div class="row">
+                    @if (productItems != null && productItems.Any())
+                    {
+                        @foreach (ProductItem entity in productItems)
+                        {
+                            <div class="col-md-4">
+                                <div style="height: 99%" class="card mb-4 product-wap rounded-0">
+                                    <div class="card rounded-0">
+                                        @if (entity.Images.FirstOrDefault() != default)
+                                        {
+                                            <img src="~/images/ProductItems/@entity.Id/@entity.Images.FirstOrDefault().Name" alt="@entity.Images.FirstOrDefault().Alt" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/images/DefaultImages/Soon.png" alt="В процессе добавления." />
+                                        }
+                                        <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <form style="display:inline-block;" id="form_add-@entity.Id" asp-area="Admin" asp-controller="DisplayedProducts" asp-action="AddToDisplayed" method="post">
+                                                        <input style="display:inline-block;" type="hidden" name="guid" value="@entity.Id" />
+                                                        <a style="display:inline-block;" class="btn btn-success" href="#" onclick="document.getElementById('form_add-@entity.Id').submit();">Добавить</a>
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card-body" style="display: flex; flex-direction: column; height: 100%; ">
+                                        <div style="flex: 1 0 auto;">
+                                            <a class="h3 text-decoration-none" href="/Products/Index/@entity.Id">@entity.Name</a>
+                                        </div>
+                                        <div style="flex: 0 0 auto;">
+                                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                                                <li>
+                                                    @if (entity.Sizes != null && entity.Sizes.Any())
+                                                    {
+                                                        @for (int i = 0; i < entity.Sizes.Count; i++)
+                                                        {
+                                                            if (i != 0)
+                                                            {
+                                                                <span>/</span>
+                                                            }
+                                                            <span>@entity.Sizes.ElementAt(i).SizeValue</span>;
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>Отсутствуют</span>
+                                                    }
+                                                </li>
+                                            </ul>
+                                            @if (entity.Discount == 0)
+                                            {
+                                                <p class="text-center mb-0">
+                                                    @entity.Price&#8381;
+                                                </p>
+                                                <p class="text-center mb-0"><br></p>
+                                            }
+                                            else
+                                            {
+                                                <p class="text-center mb-0">
+                                                    <strike> @entity.Price&#8381; </strike>&nbsp;<font color="red">-@entity.Discount%</font>
+                                                </p>
+                                                <p class="text-center mb-0">
+                                                    @entity.TotalPrice&#8381;
+                                                </p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
         </div>
     </div>
 </div>
