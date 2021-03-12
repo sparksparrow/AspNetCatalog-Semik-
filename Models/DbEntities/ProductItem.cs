@@ -3,14 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace GnomShop.Models
-{
-    public enum Gender
-    {
-        [Display(Name = "Мужское")]
-        Male,
-        [Display(Name = "Женское")]
-        Female
-    }
+{  
     public enum ProductItemType
     {
         [Display(Name = "Комбинезон")]
@@ -31,7 +24,6 @@ namespace GnomShop.Models
             Price = 0;
             Discount = 0;
             TotalPrice = 0;
-            Gender = Gender.Male;
             Sizes = new List<Size>();
             Images = new List<Image>();
         }
@@ -60,10 +52,6 @@ namespace GnomShop.Models
         [Display(Name = "Цена со скидкой")]
         public double TotalPrice { get; set; }
 
-        [Required(ErrorMessage = "Не указан пол")]
-        [Display(Name = "Пол")]
-        public Gender Gender { get; set; }
-
         [Display(Name = "Размеры")]
         public virtual ICollection<Size> Sizes { get; set; } 
 
@@ -72,7 +60,11 @@ namespace GnomShop.Models
         public string Description { get; set; }
                 
         [Display(Name = "Картинки")]
-        public virtual ICollection<Image> Images { get; set; } 
+        public virtual ICollection<Image> Images { get; set; }
+
+        [Required(ErrorMessage = "Не указан артикул")]
+        [Display(Name = "Артикул")]
+        public string Article { get; set; }
 
         [DataType(DataType.DateTime)]
         [Display(Name = "Дата")]

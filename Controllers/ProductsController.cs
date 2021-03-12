@@ -31,8 +31,6 @@ namespace GnomShop.Controllers
             string currentproductItemTypeValues = default,
             string[] colorValues = default,
             string currentColorValues = default,
-            Nullable<Gender> genderValues = default,
-            Nullable<Gender> currentGenderValues = default,
             ushort pageIndex = 0)
         {
             if (id != default)
@@ -53,13 +51,8 @@ namespace GnomShop.Controllers
                 searchString = currentFilter;
             }
 
-            ViewData["CurrentSort"] = sortOrder;  
+            ViewData["CurrentSort"] = sortOrder; 
             
-            if(genderValues != default)
-            {
-                currentGenderValues = genderValues;
-            }
-            ViewData["CurrentGenderValues"] = currentGenderValues;
 
             Dictionary<double, bool> sizes = dataManager.Sizes.GetSizes().Select(p => p.SizeValue).Distinct().OrderBy(p => p).ToDictionary(k => k, v => false);           
 
@@ -87,8 +80,7 @@ namespace GnomShop.Controllers
                     CollectionProcessor.GetSelectedColorValues(
                         colors,
                         colorValues,
-                        currentColorValues),
-                    currentGenderValues                    
+                        currentColorValues)                   
                     ),                
                 products.AsNoTracking(), 
                 pageIndex, 

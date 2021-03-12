@@ -20,7 +20,6 @@
     var currentSizeValues = string.Join(",", sizesArray);
     var currentProductItemTypeValues = string.Join(",", productItemTypesArray);
     var currentColorValues = string.Join(",", colorArray);
-    Nullable<Gender> currentGenderValues = ViewData["CurrentGenderValues"] as Nullable<Gender>;
 }
 
 <div class="container py-5">
@@ -41,16 +40,16 @@
                         </a>
                         <ul class="collapse show list-unstyled pl-3">
                             <li>
-                                <a class="text-decoration-none" asp-action="Index" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues asp-route-currentGenderValues=@currentGenderValues>Сначала новые</a>
+                                <a class="text-decoration-none" asp-action="Index" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues >Сначала новые</a>
                             </li>
                             <li>
-                                <a class="text-decoration-none" asp-action="Index" asp-route-sortOrder="price_asc" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues asp-route-currentGenderValues=@currentGenderValues>Сначала дешевле</a>
+                                <a class="text-decoration-none" asp-action="Index" asp-route-sortOrder="price_asc" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues >Сначала дешевле</a>
                             </li>
                             <li>
-                                <a class="text-decoration-none" asp-action="Index" asp-route-sortOrder="price_desc" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues asp-route-currentGenderValues=@currentGenderValues>Сначала дороже</a>
+                                <a class="text-decoration-none" asp-action="Index" asp-route-sortOrder="price_desc" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues >Сначала дороже</a>
                             </li>
                             <li>
-                                <a class="text-decoration-none" asp-action="Index" asp-route-sortOrder="discount_desc" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues asp-route-currentGenderValues=@currentGenderValues>По размеру скидки</a>
+                                <a class="text-decoration-none" asp-action="Index" asp-route-sortOrder="discount_desc" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues >По размеру скидки</a>
                             </li>
                         </ul>
                     </li>
@@ -167,13 +166,13 @@
                 <div class="col-md-6">
                     <ul class="list-inline shop-top-menu pb-3 pt-1">
                         <li class="list-inline-item">
-                            <a class="h3 text-dark text-decoration-none mr-3" asp-action="Index" asp-route-sortOrder="" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues asp-route-genderValues="">Всё</a>
+                            <a class="h3 text-dark text-decoration-none mr-3" asp-action="Index" asp-route-sortOrder="" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues >Всё</a>
                         </li>
                         <li class="list-inline-item">
-                            <a class="h3 text-dark text-decoration-none mr-3" asp-action="Index" asp-route-sortOrder="" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues asp-route-genderValues=@Gender.Male>Для мужчик</a>
+                            <a class="h3 text-dark text-decoration-none mr-3" asp-action="Index" asp-route-sortOrder="" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues >Для мужчик</a>
                         </li>
                         <li class="list-inline-item">
-                            <a class="h3 text-dark text-decoration-none mr-3" asp-action="Index" asp-route-sortOrder="" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues asp-route-genderValues=@Gender.Female>Для женщин</a>
+                            <a class="h3 text-dark text-decoration-none mr-3" asp-action="Index" asp-route-sortOrder="" asp-route-currentFilter=@searchString asp-route-minValue=@minValue asp-route-maxValue=@maxValue asp-route-currentSizeValues=@currentSizeValues asp-route-currentproductItemTypeValues=@currentProductItemTypeValues asp-route-currentColorValues=@currentColorValues >Для женщин</a>
                         </li>
                     </ul>
                 </div>
@@ -261,7 +260,7 @@
                                        asp-route-currentSizeValues=@currentSizeValues
                                        asp-route-currentproductItemTypeValues=@currentProductItemTypeValues
                                        asp-route-currentColorValues=@currentColorValues
-                                       asp-route-currentGenderValues=@currentGenderValues>
+                                       >
                                         Предыдущая
                                     </a>
 
@@ -282,7 +281,7 @@
                                        asp-route-currentSizeValues=@currentSizeValues
                                        asp-route-currentproductItemTypeValues=@currentProductItemTypeValues
                                        asp-route-currentColorValues=@currentColorValues
-                                       asp-route-currentGenderValues=@currentGenderValues>1</a>
+                                       >1</a>
                                 </li>
                                 if (paginateProductItems.PageIndex > 2)
                                 {
@@ -303,7 +302,7 @@
                                        asp-route-currentSizeValues=@currentSizeValues
                                        asp-route-currentproductItemTypeValues=@currentProductItemTypeValues
                                        asp-route-currentColorValues=@currentColorValues
-                                       asp-route-currentGenderValues=@currentGenderValues>
+                                       >
                                         @paginateProductItems.PageIndex
                                     </a>
                                 </li>
@@ -326,7 +325,7 @@
                                        asp-route-currentSizeValues=@currentSizeValues
                                        asp-route-currentproductItemTypeValues=@currentProductItemTypeValues
                                        asp-route-currentColorValues=@currentColorValues
-                                       asp-route-currentGenderValues=@currentGenderValues>
+                                       >
                                         @(paginateProductItems.PageIndex+2)
                                     </a>
                                 </li>
@@ -350,7 +349,7 @@
                                        asp-route-currentSizeValues=@currentSizeValues
                                        asp-route-currentproductItemTypeValues=@currentProductItemTypeValues
                                        asp-route-currentColorValues=@currentColorValues
-                                       asp-route-currentGenderValues=@currentGenderValues>
+                                       >
                                         @paginateProductItems.TotalPages
                                     </a>
                                 </li>
@@ -372,7 +371,7 @@
                                        asp-route-currentSizeValues=@currentSizeValues
                                        asp-route-currentproductItemTypeValues=@currentProductItemTypeValues
                                        asp-route-currentColorValues=@currentColorValues
-                                       asp-route-currentGenderValues=@currentGenderValues>
+                                       >
                                         Следующая
                                     </a>
                                 </li>
