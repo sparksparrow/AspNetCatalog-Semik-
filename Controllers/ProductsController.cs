@@ -34,8 +34,11 @@ namespace GnomShop.Controllers
             ushort pageIndex = 0)
         {
             if (id != default)
-            {
+            {                
                 ProductItem productItem = dataManager.ProductItems.GetProductById(id);
+
+                ViewBag.PageTitle = productItem;
+
                 IQueryable<ProductItem> productItems = dataManager.ProductItems.GetProducts();
                 return View("Show", await ShowViewModel.CreateAsync(productItem, productItems.AsNoTracking()));
             }

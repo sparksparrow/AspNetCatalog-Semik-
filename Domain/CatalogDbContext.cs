@@ -5,9 +5,6 @@ using GnomShop.Models;
 using GnomShop.Services;
 using Microsoft.EntityFrameworkCore;
 using GnomShop.Models.DbEntities;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Newtonsoft.Json;
 
 namespace GnomShop.Domain
 {

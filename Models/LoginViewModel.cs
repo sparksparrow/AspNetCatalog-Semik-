@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+
 namespace GnomShop.Models
 {
     public class LoginViewModel

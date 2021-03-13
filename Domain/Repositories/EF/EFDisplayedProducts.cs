@@ -1,6 +1,9 @@
 ﻿using GnomShop.Domain.Repositories.Interfaces;
 using GnomShop.Models.DbEntities;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -30,6 +33,17 @@ namespace GnomShop.Domain.Repositories.EF
         {  
            context.Entry(entity).State = EntityState.Modified;
            context.SaveChanges();
+        }
+
+        public async void RefreshDisplayedProductsAsync(Guid id)
+        {
+            var existingModel = await GetDisplayedProductsAsNoTrackingAsync();
+
+            var arrayProducts = existingModel.Products != null ? JsonConvert.DeserializeObject<List<Guid>>(existingModel.Products) : new List<Guid>();
+            arrayProducts = arrayProducts.Where(p => p != default && p != id).ToList();            
+            existingModel.Products = JsonConvert.SerializeObject(arrayProducts);
+
+            SaveDisplayedProducts(existingModel);
         }
     }
 }

@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace GnomShop.Services
 {
@@ -21,8 +20,7 @@ namespace GnomShop.Services
                     ICollection<double> listOfSizes = new List<double>();
                     foreach (var size in currentValues.Split(","))
                     {
-                        double result = default;
-                        if (double.TryParse(size, out result))
+                        if (double.TryParse(size, out double result))
                         {
                             listOfSizes.Add(result);
                         }
@@ -45,8 +43,7 @@ namespace GnomShop.Services
                     ICollection<ProductItemType> listOfTypes = new List<ProductItemType>();
                     foreach (var type in currentValues.Split(","))
                     {
-                        ProductItemType result = default;
-                        if (ProductItemType.TryParse(type, out result))
+                        if (ProductItemType.TryParse(type, out ProductItemType result))
                         {
                             listOfTypes.Add(result);
                         }

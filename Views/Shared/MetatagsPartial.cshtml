@@ -1,12 +1,27 @@
 ﻿@{
-    PageTitle pageTitle = ViewBag.PageTitle;
+    EntityBase pageTitle = ViewBag.PageTitle;
 }
 @if (pageTitle != null)
 {
-    <title>@pageTitle.Title</title>
+    @if (pageTitle.Title != null)
+    {
+        <title>@pageTitle.Title</title>
+    }
+    else
+    {
+        <title>@Config.CompanyName</title>
+    }
+    @if (pageTitle.MetaDescription != null)
+    {
+        <meta name="description" content="@pageTitle.MetaDescription">
+    }
+    @if (pageTitle.MetaKeywords != null)
+    {
+        <meta name="keywords" content="@pageTitle.MetaKeywords">
+    }
 }
 else
-{
+{    
     <title>@Config.CompanyName</title>
 }
 <meta charset="utf-8">

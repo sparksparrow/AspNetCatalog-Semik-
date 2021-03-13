@@ -2,7 +2,6 @@
 using GnomShop.Models.DbEntities;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.IO;
 using System.Linq;
 
 namespace GnomShop.Domain.Repositories.EF

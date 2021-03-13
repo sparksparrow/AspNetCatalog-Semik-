@@ -3,35 +3,37 @@
     string pageTitle = "Редактировать страницу";
     ViewBag.Title = pageTitle;
 }
+<div style="margin: 20px">
+    <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Назад</a>
+    <br/>
+    <div class="form">
+        <h1 class="h2 pb-4">@pageTitle</h1>
+        <div>
+            <form asp-area="Admin" asp-controller="PageTitles" asp-action="Edit" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="CodeWord" />
 
-<div class="form">
-    <h1 class="h2 pb-4">@pageTitle</h1>
-    <br />
-    <div>
-        <form asp-area="Admin" asp-controller="PageTitles" asp-action="Edit" method="post" enctype="multipart/form-data">
-            <input type="hidden" asp-for="Id" />
-            <input type="hidden" asp-for="CodeWord" />
-
-            <div asp-validation-summary="All"></div>
-            <div>
-                <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Title"></label>
-                <input class="form-control" asp-for="Title" />
-                <span asp-validation-for="Title"></span>
-                <br />
-            </div>
-            <div>
-                <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="MetaDescription"></label>
-                <input class="form-control" asp-for="MetaDescription" />
-                <span asp-validation-for="MetaDescription"></span>
-                <br />
-            </div>
-            <div>
-                <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="MetaKeywords"></label>
-                <input class="form-control" asp-for="MetaKeywords" />
-                <span asp-validation-for="MetaKeywords"></span>
-                <br />
-            </div>
-            <input class="form-control" type="submit" value="Сохранить" />
-        </form>
+                <div asp-validation-summary="All"></div>
+                <div>
+                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Title"></label>
+                    <input class="form-control" asp-for="Title" />
+                    <span asp-validation-for="Title"></span>
+                    <br />
+                </div>
+                <div>
+                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="MetaDescription"></label>
+                    <input class="form-control" asp-for="MetaDescription" />
+                    <span asp-validation-for="MetaDescription"></span>
+                    <br />
+                </div>
+                <div>
+                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="MetaKeywords"></label>
+                    <input class="form-control" asp-for="MetaKeywords" />
+                    <span asp-validation-for="MetaKeywords"></span>
+                    <br />
+                </div>
+                <input class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" type="submit" value="Сохранить" />
+            </form>
+        </div>
     </div>
 </div>
