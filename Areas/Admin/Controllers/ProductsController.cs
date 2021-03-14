@@ -78,7 +78,7 @@ namespace GnomShop.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Delete(Guid id)
         {
-            dataManager.DisplayedProducts.RefreshDisplayedProductsAsync(id);
+            dataManager.DisplayedProducts.RefreshDisplayedProducts(id);
             dataManager.ProductItems.DeleteProduct(id);            
             return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
         }

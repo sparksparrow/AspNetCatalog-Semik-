@@ -15,20 +15,8 @@
 
                 <div asp-validation-summary="All"></div>
                 <div>
-                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Title"></label>
-                    <input class="form-control" id="titleItem" asp-for="Title" />
-                    <span asp-validation-for="Title"></span>
-                    <br />
-                </div>
-                <div>
                     <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="@Model.ProductItemType"></label>
                     <select class="form-control" id="productItemType" asp-for="@Model.ProductItemType" asp-items="@Html.GetEnumSelectList<ProductItemType>()"></select>
-                    <br />
-                </div>
-                <div>
-                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Article"></label>
-                    <input class="form-control" id="article" asp-for="Article" />
-                    <span asp-validation-for="Article"></span>
                     <br />
                 </div>
                 <div>
@@ -38,16 +26,26 @@
                     <br />
                 </div>
                 <div>
+                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Title"></label>
+                    <input class="form-control" id="titleItem" asp-for="Title" />
+                    <span asp-validation-for="Title"></span>
+                    <br />
+                </div>
+                <div>
+                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Article"></label>
+                    <input class="form-control" id="article" asp-for="Article" />
+                    <span asp-validation-for="Article"></span>
+                    <br />
+                </div>
+                <div>
                     <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Color"></label>
+                    <p>Лучше писать в одном формате (к примеру: Красный, Жёлтый и т.д.) (НО НЕ ТАК: "КРАСНАЯ" рубашка и "КРАСНЫЙ" комбинезон)</p>
                     <input class="form-control" id="colorItem" asp-for="Color" />
                     <span asp-validation-for="Color"></span>
                     <br />
                 </div>
                 <div>
                     @Html.TextAreaFor(model => model.Description)
-                    @*<label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Description"></label>
-                    <input class="form-control" id="description" asp-for="Description" />
-                    <span asp-validation-for="Description"></span>*@
                     <br />
                 </div>
                 <div>
@@ -94,7 +92,7 @@
                         }
                         <input class="size" name="sizeValues" type="number" min="0" max="300" step="0.5" />
                     </div>
-                    <br/>
+                    <br />
                 </div>
                 <div>
                     <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="MetaDescription"></label>

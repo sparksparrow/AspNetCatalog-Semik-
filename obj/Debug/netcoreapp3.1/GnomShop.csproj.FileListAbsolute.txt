@@ -207,3 +207,4 @@ D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\GnomShop.csprojAsse
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Category\ScriptsPartial.cshtml.g.cs
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\MainSliderContent\ScriptsPartial.cshtml.g.cs
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Products\ScriptsPartial.cshtml.g.cs
+D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Views\Home\Error.cshtml.g.cs

@@ -20,6 +20,7 @@ namespace GnomShop.Models
     {
         public ProductItem() : base()
         {
+            Title = "";
             DateAdded = DateTime.UtcNow;
             Price = 0;
             Discount = 0;

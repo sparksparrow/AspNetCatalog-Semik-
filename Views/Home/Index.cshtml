@@ -89,7 +89,7 @@
         <div class="col-lg-6 m-auto">
             <h1 class="h1">@categoriesOfTheMonth.Title</h1>
             <p>
-                @categoriesOfTheMonth.Description
+                @Html.Raw(categoriesOfTheMonth.Description)
             </p>
         </div>
     </div>
@@ -105,7 +105,7 @@
                 {
                     <a asp-area="" asp-controller="Products" asp-action="Index" asp-route-currentproductItemTypeValues="@entity.ProductItemType"><img src="~/images/DefaultImages/Soon600_800.png.png" class="rounded-circle img-fluid border"></a>
                 }
-                <h2 class="h5 text-center mt-3 mb-3">@Html.DisplayFor(x => @entity.ProductItemType)</h2>
+                <h2 class="h5 text-center mt-3 mb-3">@Html.DisplayFor(x => entity.ProductItemType)</h2>
                 <p class="text-center"><a class="btn btn-success"  asp-area="" asp-controller="Products" asp-action="Index" asp-route-currentproductItemTypeValues="@entity.ProductItemType">Вперёд!</a></p>
             </div>
         }        
@@ -118,7 +118,7 @@
             <div class="col-lg-6 m-auto">
                 <h1 class="h1">@displayedProducts.DisplayedProducts.Title</h1>
                 <p>
-                    @displayedProducts.DisplayedProducts.Description
+                    @Html.Raw(displayedProducts.DisplayedProducts.Description)
                 </p>
             </div>
         </div>
@@ -152,7 +152,7 @@
                                 </ul>
                                 <a class="h2 text-decoration-none text-dark" asp-area="" asp-controller="Products" asp-action="Index" asp-route-id="@product.Id">@product.Name</a>
                                 <p class="card-text">
-                                    @product.Description
+                                    @Html.Raw(product.Description)
                                 </p>
                             </div>
                             </div>

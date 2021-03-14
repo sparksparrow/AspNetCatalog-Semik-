@@ -31,7 +31,7 @@ namespace GnomShop.Models
             if(relatedProdcuts.Count < maxCountRealatedProducts)
             {
                 var additionalProducts = await prodcutsItems
-                    .Where(p=>p.ProductItemType==productItem.ProductItemType)                    
+                    .Where(p=>p.ProductItemType==productItem.ProductItemType)
                     .ToListAsync();
 
                 var exceptList = relatedProdcuts.ToList();

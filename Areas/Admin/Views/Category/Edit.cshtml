@@ -27,7 +27,7 @@
                     <br />
                 </div>
                 <div>
-                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none">Изображения лучше подгонять под: 800x800px (равное соотношение сторон)</label>
+                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none">Изображения лучше подгонять под квадрат (к примеру "800x800px")</label>
                 </div>
                 <div class="row">
                     <label class="collapsed d-flex justify-content-between h3 text-decoration-none">Текущее изображение</label>
@@ -38,6 +38,7 @@
                     <br />
                 </div>
                 <div>
+                    <br />
                     <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="@Model.Image"></label>
                     <input class="form-control" type="file" name="titleImageFile" id="titleImageFile" onchange="handleFiles(this.files)" accept="image/*" />
                     <br />

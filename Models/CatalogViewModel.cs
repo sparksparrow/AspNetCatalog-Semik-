@@ -23,10 +23,15 @@ namespace GnomShop.Models
 
         public static async Task<CatalogViewModel> CreateAsync(ViewFilter<ProductItem> viewFilter ,IQueryable<ProductItem> source, int pageIndex, string sortOrder)
         {
-            var max = await source.MaxAsync(p => p.Price);
-            var filteredSource = viewFilter.Filter(source);
-            var sortedSource = SortOrder<ProductItem>.Create(filteredSource, sortOrder);            
-            var paginateProductItems = await PaginatedList<ProductItem>.CreateAsync(sortedSource, pageIndex, pageSize);
+            double max = default;
+            PaginatedList<ProductItem> paginateProductItems = default;
+            if (source != null && source.Any())
+            {
+                max = await source.MaxAsync(p => p.Price);
+                var filteredSource = viewFilter.Filter(source);
+                var sortedSource = SortOrder<ProductItem>.Create(filteredSource, sortOrder);
+                paginateProductItems = await PaginatedList<ProductItem>.CreateAsync(sortedSource, pageIndex, pageSize);
+            }
             return new CatalogViewModel(viewFilter, source, paginateProductItems, max);
         }
 

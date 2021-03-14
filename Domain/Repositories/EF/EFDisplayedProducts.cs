@@ -20,6 +20,11 @@ namespace GnomShop.Domain.Repositories.EF
         {
             return await context.DisplayedProducts.SingleOrDefaultAsync();
         }
+
+        public DisplayedProducts GetDisplayedProductsAsNoTracking()
+        {
+            return context.DisplayedProducts.AsNoTracking().SingleOrDefault();
+        }
         public string GetDisplayedProducts()
         {
             return context.DisplayedProducts.AsNoTracking().SingleOrDefault().Products;
@@ -35,9 +40,9 @@ namespace GnomShop.Domain.Repositories.EF
            context.SaveChanges();
         }
 
-        public async void RefreshDisplayedProductsAsync(Guid id)
+        public void RefreshDisplayedProducts(Guid id)
         {
-            var existingModel = await GetDisplayedProductsAsNoTrackingAsync();
+            var existingModel = GetDisplayedProductsAsNoTracking();
 
             var arrayProducts = existingModel.Products != null ? JsonConvert.DeserializeObject<List<Guid>>(existingModel.Products) : new List<Guid>();
             arrayProducts = arrayProducts.Where(p => p != default && p != id).ToList();            
