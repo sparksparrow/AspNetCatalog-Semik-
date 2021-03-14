@@ -27,7 +27,7 @@
                 </div>
                 <div>
                     <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Article"></label>
-                    <input class="form-control" id="metaDescription" asp-for="Article" />
+                    <input class="form-control" id="article" asp-for="Article" />
                     <span asp-validation-for="Article"></span>
                     <br />
                 </div>
@@ -44,9 +44,10 @@
                     <br />
                 </div>
                 <div>
-                    <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Description"></label>
+                    @Html.TextAreaFor(model => model.Description)
+                    @*<label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Description"></label>
                     <input class="form-control" id="description" asp-for="Description" />
-                    <span asp-validation-for="Description"></span>
+                    <span asp-validation-for="Description"></span>*@
                     <br />
                 </div>
                 <div>
@@ -81,16 +82,19 @@
                     <span asp-validation-for="Discount"></span>
                     <br />
                 </div>
-                <div id="sizes">
+                <div>
                     <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="Sizes"></label>
-                    @if (Model.Sizes.Any())
-                    {
-                        @foreach (Size size in Model.Sizes)
+                    <div id="sizes">
+                        @if (Model.Sizes.Any())
                         {
-                            <input class="size" name="sizeValues" type="number" min="0" max="300" step="0.5" value="@size.SizeValue" />
+                            @foreach (Size size in Model.Sizes)
+                            {
+                                <input class="size" name="sizeValues" type="number" min="0" max="300" step="0.5" value="@size.SizeValue" />
+                            }
                         }
-                    }
-                    <input class="size" name="sizeValues" type="number" min="0" max="300" step="0.5" />
+                        <input class="size" name="sizeValues" type="number" min="0" max="300" step="0.5" />
+                    </div>
+                    <br/>
                 </div>
                 <div>
                     <label class="collapsed d-flex justify-content-between h3 text-decoration-none" asp-for="MetaDescription"></label>
@@ -109,10 +113,3 @@
         </div>
     </div>
 </div>
-
-    @*<script>
-            window.onload = function () {
-                var newCKEditor = CKEDITOR.replace('@Html.IdFor(x=>x.Description)');
-                newCKEditor.updateElement();
-            }
-        </script>*@

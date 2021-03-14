@@ -207,15 +207,3 @@ D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\GnomShop.csprojAsse
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Category\ScriptsPartial.cshtml.g.cs
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\MainSliderContent\ScriptsPartial.cshtml.g.cs
 D:\C++ projects\AspNetCatalog-Semik-\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Products\ScriptsPartial.cshtml.g.cs
-D:\C++ projects\AspNetCatalog-Semik-\bin\Debug\netcoreapp3.1\Microsoft.ApplicationInsights.dll
-D:\C++ projects\AspNetCatalog-Semik-\bin\Debug\netcoreapp3.1\Microsoft.ApplicationInsights.AspNetCore.dll
-D:\C++ projects\AspNetCatalog-Semik-\bin\Debug\netcoreapp3.1\Microsoft.AI.DependencyCollector.dll
-D:\C++ projects\AspNetCatalog-Semik-\bin\Debug\netcoreapp3.1\Microsoft.AI.EventCounterCollector.dll
-D:\C++ projects\AspNetCatalog-Semik-\bin\Debug\netcoreapp3.1\Microsoft.AI.PerfCounterCollector.dll
-D:\C++ projects\AspNetCatalog-Semik-\bin\Debug\netcoreapp3.1\Microsoft.AI.WindowsServer.dll
-D:\C++ projects\AspNetCatalog-Semik-\bin\Debug\netcoreapp3.1\Microsoft.AI.ServerTelemetryChannel.dll
-D:\C++ projects\AspNetCatalog-Semik-\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DiagnosticAdapter.dll
-D:\C++ projects\AspNetCatalog-Semik-\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.ApplicationInsights.dll
-D:\C++ projects\AspNetCatalog-Semik-\bin\Debug\netcoreapp3.1\Microsoft.Extensions.PlatformAbstractions.dll
-D:\C++ projects\AspNetCatalog-Semik-\bin\Debug\netcoreapp3.1\System.Diagnostics.PerformanceCounter.dll
-D:\C++ projects\AspNetCatalog-Semik-\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll

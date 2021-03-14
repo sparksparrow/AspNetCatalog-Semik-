@@ -21,7 +21,7 @@
         })
 
         if (filled) {
-            var htmlInputSize = "<input class='size' id='sizeValues' name='sizeValues'  type='number' min='0' max='300' step='0.5' />";
+            var htmlInputSize = "<input class='size' name='sizeValues'  type='number' min='0' max='300' step='0.5' />";
             $('#sizes').append(htmlInputSize);
         }
     });
@@ -59,11 +59,15 @@ function synchSEOWords() {
     let options = document.getElementById("productItemType").options;    
 
     for (let i = 0; i < options.length; i++) {
+        $('#titleItem').val($('#titleItem').val().replace(options[i].text, ''));
         $('#nameItem').val($('#nameItem').val().replace(options[i].text, ''));
         $('#metaKeywords').val($('#metaKeywords').val().replace(options[i].text + ", ", ''));
     }
-    let tempName = $('#nameItem').val();
 
+    let tempName = $('#titleItem').val();
+    $('#titleItem').val($('#productItemType option:selected').text() + tempName);
+
+    tempName = $('#nameItem').val();
     $('#nameItem').val($('#productItemType option:selected').text() + tempName);
 
     temp = $('#metaKeywords').val();

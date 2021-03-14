@@ -1,3 +1,20 @@
-﻿<script src="~/js/ckeditor/ckeditor.js"></script>
+﻿<script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinyMCE.init({
+        selector: '#Description',
+        height: 500,
+        width: 800,
+        plugins: 'style,layer,table,save,advhr,advimage,advlink,advlist,emotions,iespell,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras',
+        themes: 'advanced',
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | forecolor backcolor emoticons | bullist numlist outdent indent | l ink image | print preview media fullpage",
+        font_formats: "MuseoSans = sans-serif;",
+        setup: function (ed) {
+            ed.on('change', function (e) {
+                let content = tinyMCE.get(ed.id).getContent({ format: 'text' });
+                $('#metaDescription').val(content);
+            });
+        }
+    });
+</script>
 <script src="~/js/bundleMain.min.js" asp-append-version="true"></script>
 <script src="~/js/custom.js"></script>
